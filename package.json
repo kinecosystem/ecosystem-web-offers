@@ -8,11 +8,12 @@
 	"dependencies": {
 		"@types/react": "^16.0.38",
 		"@types/react-dom": "^16.0.4",
+		"@types/react-swipeable-views": "^0.12.1",
 		"css-loader": "^0.28.9",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
+		"react-swipeable-views": "^0.12.13",
 		"style-loader": "^0.20.1",
-		"survey-react": "^1.0.8",
 		"tslint-eslint-rules": "^4.1.1"
 	},
 	"devDependencies": {
@@ -22,9 +23,11 @@
 		"run-s": "0.0.0",
 		"stylus": "^0.54.5",
 		"stylus-loader": "^3.0.1",
+		"ts-loader": "^3.5.0",
 		"tslint": "^5.9.1",
 		"typescript": "^2.6.2",
 		"webpack": "^3.10.0",
+		"webpack-bundle-analyzer": "^2.11.0",
 		"webpack-config-utils": "^2.3.0",
 		"webpack-dev-server": "^2.11.1"
 	},
@@ -32,11 +35,12 @@
 		"clean": "rimraf scripts/bin",
 		"transpile": "tsc -p scripts",
 		"transpile-watch": "npm run transpile -- --watch",
-		"serve": "webpack-dev-server --no-info --colors --port 3330",
+		"serve": "webpack-dev-server --no-info --color",
 		"serve-public": "webpack-dev-server --no-info --colors --port 3330 --host 0.0.0.0",
 		"dev": "npm-run-all transpile -p transpile-watch serve",
 		"bundle": "webpack --env.prod --progress --colors",
 		"build": "run-s transpile bundle",
-		"test": "echo \"Error: no tests defined\" && exit 1"
+		"test": "echo \"Error: no tests defined\" && exit 1",
+		"analyze": "webpack --profile --json > stats.tmp.json; webpack-bundle-analyzer stats.tmp.json && rm stats.tmp.json"
 	}
 }

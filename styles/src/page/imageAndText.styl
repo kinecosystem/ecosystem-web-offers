@@ -1,0 +1,46 @@
+@require "../common.styl"
+
+$text-font-size()
+	font-size 3.4vw
+
+.page.imageAndText
+	flex-box(column)
+	width: 100%
+	height: 100%
+	roboto()
+
+	.header
+		padding 5vh 0 5vh
+		flex-box(column)
+		min-height 22vh
+		img
+			height: 31.7vw
+			margin: 0 auto 0
+		.title
+			roboto()
+			color: $deep-sky-blue
+			margin: 3vh auto 0
+			letter-spacing: -0.5px
+			font-size 5.6vw
+	.body
+		flex-box(column)
+		height: 45vh
+		margin 5vw auto 0
+		roboto()
+		line-height: 1.7
+		$text-font-size()
+		color $blue-grey
+		width 70vw
+		text-align center
+	.footer
+		margin: auto auto 3vh
+		$text-font-size()
+		color $blue-grey
+	.btn
+		btn()
+		roboto()
+		color white
+		background-color $deep-sky-blue
+		width 80vw
+		margin: 0 auto 5vw
+

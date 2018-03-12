@@ -1,0 +1,37 @@
+@require "../common.styl"
+
+.page
+	.question.multichoice
+		width: 100%
+
+		.header
+
+			.title
+				text-align: center
+				width: 72vw
+				font-size: 6.2vw
+				letter-spacing: -0.5px
+				color: #047cfc
+				margin: 10% auto 1%
+				roboto()
+
+			.description
+				width: 60vw
+				margin: 3vh auto
+				color: #7884a5
+				font-size: 4.2vw
+
+		.choices
+			margin: 6% auto 0
+			flex-box(column)
+		.choice
+			btn()
+			margin: 5% 11%
+			background: white
+			roboto()
+			color: #7884a5;
+			outline none
+			&:active
+				background-color: #047cfc
+				border-color: #047cfc
+				color white

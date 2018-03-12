@@ -1,21 +1,103 @@
 import * as React from "react";
-//import "./App.css";
 
-///const logo = require("./logo.svg");
+import Carousel from "./ui/container/carousel";
+import * as  bridge from "./bridge";
+import FinalPage from "./ui/page/final";
+import ImageAndTextPage from "./ui/page/imageAndText";
+import FullPageMultiChoice from "./ui/page/multichoice.question";
+
+import "../../styles/src/app.styl";
+
+export interface AppState {
+	pages: any;
+	currentPage: number;
+	isComplete: boolean;
+	data: {};
+}
+
+enum PageType {
+	"FullPageMultiChoice",
+	"ImageAndText",
+	"Html",
+}
+
+let pages: any = [];
+
+function setRenderPollHandler(callback: () => void) {
+	window.kin.renderPoll = data => {
+		console.log("In renderPoll", data);
+		pages = data.pages.map((item: any) => {
+			item.type = PageType[ item.type ];
+			return item;
+		});
+		callback();
+		return;
+	};
+}
 
 class App extends React.Component {
-	render() {
+	public state: AppState;
+
+	constructor(props: any) {
+		super(props);
+		setRenderPollHandler(() => {
+			console.log("renderPoll callback:", pages);
+			this.setState({ pages });
+		});
+		bridge.notifyPageLoaded();
+		this.state = {
+			pages,
+			currentPage: 0,
+			isComplete: false,
+			data: {},
+		};
+		this.onPageCompleteHandler = this.onPageCompleteHandler.bind(this);
+	}
+
+	public render() {
+		console.log("current page:", this.state.currentPage);
 		return (
-			<div className="App">
-				<header className="App-header">
-					<img className="App-logo" alt="logo"/>
-					<h1 className="App-title">Welcome to React</h1>
-				</header>
-				<p className="App-intro">
-					To get started, edit <code>src/App.tsx</code> and save to reload.
-				</p>
+			<div
+				className="app">
+				<Carousel selectedItem={this.state.currentPage}>
+					{this.renderPages()}
+				</Carousel>
 			</div>
 		);
+	}
+
+	private onPageCompleteHandler(answerData: any) {
+		const allData: any = Object.assign({}, this.state.data, answerData);  // todo pollyfill Object.assign
+		const newPageIndex = this.state.currentPage + 1;
+		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
+		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
+		if (isComplete) {
+			if (allData.length) {
+				return bridge.submitResult(allData);
+			} else {
+				return bridge.close();
+			}
+		}
+		this.setState({
+			currentPage: newPageIndex,
+			data: allData,
+			isComplete,
+		});
+
+	}
+
+	private renderPages() {
+		return this.state.pages.map((page: any, index: number) => {
+			switch (page.type) {
+				case PageType.FullPageMultiChoice:
+					return <FullPageMultiChoice key={index} choices={page.choices} id={page.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
+				case PageType.Html:
+					return <FinalPage key={index} doneBtnCallback={bridge.close}/>;
+				case PageType.ImageAndText:
+					return <ImageAndTextPage key={index} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText}
+					                         onBtnClick={this.onPageCompleteHandler}/>;
+			}
+		});
 	}
 }
 
