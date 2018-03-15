@@ -4,6 +4,7 @@ import BasePage from "./base";
 import "../../../../styles/src/page/imageAndText.styl";
 
 export interface ImageAndTextProps {
+	id: string;
 	image: string;
 	title: string;
 	onBtnClick?: () => void;
@@ -20,7 +21,8 @@ class ImageAndText extends React.Component<any, ImageAndTextProps> {
 			</div>
 			<div className={"body"} dangerouslySetInnerHTML={{ __html: this.props.bodyHtml }}></div>
 			<div className={"footer"} dangerouslySetInnerHTML={{ __html: this.props.footerHtml }}></div>
-			<button className={"btn " + (!this.props.onBtnClick ? "hidden" : "")} onClick={this.props.onBtnClick}>{this.props.buttonText}</button>;
+			<button className={"btn " + (!this.props.onBtnClick ? "hidden" : "")}
+					onClick={this.props.onBtnClick.bind(this.props, { [ this.props.id ]: "" })}>{this.props.buttonText}</button>
 		</BasePage>);
 	}
 }

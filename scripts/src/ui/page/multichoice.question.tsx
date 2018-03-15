@@ -2,8 +2,8 @@ import * as React from "react";
 import BasePage from "./base";
 import "../../../../styles/src/page/multichoice.question.styl";
 
-
 export interface FullPageMultiChoiceProps {
+	id: string;
 	title: string;
 	choices: string[];
 	onSelected?: (answerData: {}) => void;

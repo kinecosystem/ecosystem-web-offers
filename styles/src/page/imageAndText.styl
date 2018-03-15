@@ -7,7 +7,7 @@ $text-font-size()
 	flex-box(column)
 	width: 100%
 	height: 100%
-	roboto()
+	font-roboto()
 
 	.header
 		padding 5vh 0 5vh
@@ -17,16 +17,16 @@ $text-font-size()
 			height: 31.7vw
 			margin: 0 auto 0
 		.title
-			roboto()
+			font-roboto()
 			color: $deep-sky-blue
 			margin: 3vh auto 0
 			letter-spacing: -0.5px
 			font-size 5.6vw
 	.body
 		flex-box(column)
-		height: 45vh
+		height: 36vh
 		margin 5vw auto 0
-		roboto()
+		font-roboto()
 		line-height: 1.7
 		$text-font-size()
 		color $blue-grey
@@ -38,9 +38,9 @@ $text-font-size()
 		color $blue-grey
 	.btn
 		btn()
-		roboto()
+		border-width 0
+		font-roboto()
 		color white
 		background-color $deep-sky-blue
-		width 80vw
 		margin: 0 auto 5vw
 

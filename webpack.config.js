@@ -17,7 +17,7 @@ module.exports = env => {
 	const isNotProd = ifNotProd(true, false);
 
 	const mod = {
-		entry: path.join(__dirname, "scripts", "src", "index.tsx"),
+		entry: ["babel-polyfill", path.join(__dirname, "scripts", "src", "index.tsx")],
 		output: {
 			path: outPath,
 			filename: "[name].bundle.js",
