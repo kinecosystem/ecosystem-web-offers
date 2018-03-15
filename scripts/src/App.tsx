@@ -25,9 +25,11 @@ let pages: any = [];
 
 function setRenderPollHandler(callback: () => void) {
 	window.kin.renderPoll = data => {
-		console.log("In renderPoll", data);
+		console.log("In renderPoll:" + JSON.stringify(data));
 		pages = data.pages.map((item: any) => {
-			item.type = PageType[ item.type ];
+			if (item.question) {
+				item.question.choices = item.question.answers;
+			}
 			return item;
 		});
 		callback();
@@ -72,11 +74,11 @@ class App extends React.Component {
 		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
 		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
 		if (isComplete) {
-			if (allData.length) {
-				return bridge.submitResult(allData);
-			} else {
-				return bridge.close();
+			if (Object.keys(allData)) {
+				console.log("submit " + JSON.stringify(allData));
+				bridge.submitResult(allData);
 			}
+			return bridge.close();
 		}
 		this.setState({
 			currentPage: newPageIndex,
@@ -90,12 +92,11 @@ class App extends React.Component {
 		return this.state.pages.map((page: any, index: number) => {
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
-					return <FullPageMultiChoice key={index} choices={page.choices} id={page.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
+					return <FullPageMultiChoice key={index} choices={page.question.choices} id={page.question.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
 				case PageType.Html:
 					return <FinalPage key={index} doneBtnCallback={bridge.close}/>;
 				case PageType.ImageAndText:
-					return <ImageAndTextPage key={index} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText}
-					                         onBtnClick={this.onPageCompleteHandler}/>;
+					return <ImageAndTextPage key={index} id={page.id} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 			}
 		});
 	}

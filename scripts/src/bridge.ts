@@ -9,10 +9,12 @@ export function notifyPageLoaded() {
 }
 
 export function submitResult(data: any) {
+	console.log ("Submitting data:", data);
 	KinNative.handleResult(JSON.stringify(data));
 }
 
 export function close() {
+	console.log ("Requesting to close");
 	KinNative.handleCancel();
 }
 
