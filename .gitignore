@@ -1,4 +1,9 @@
+.DS_store
+
 .idea
 node_modules
 scripts/bin
 styles/bin
+
+index.html
+main.bundle.js
