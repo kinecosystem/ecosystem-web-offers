@@ -4,6 +4,7 @@
 		"outDir": "bin",
 		"rootDir": "src",
 		"jsx": "react",
+		"lib": ["dom", "es2017"],
 		"strict": true,
 		"sourceMap": true,
 		"declaration": true,
