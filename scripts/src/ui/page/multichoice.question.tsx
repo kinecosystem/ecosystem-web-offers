@@ -16,8 +16,7 @@ class MultichoiceQuestion extends React.Component<any, FullPageMultiChoiceProps>
 				this.props.onSelected({ [ this.props.id ]: value });
 			}}>{value}</button>;
 		});
-		return <BasePage>
-			<div className={"question multichoice"}>
+		return <BasePage className={"question multichoice"}>
 				<div className={"header"}>
 					<div className={"title"}>{this.props.title}</div>
 					<div className={"description"} dangerouslySetInnerHTML={{__html: this.props.description}}></div>
@@ -25,7 +24,6 @@ class MultichoiceQuestion extends React.Component<any, FullPageMultiChoiceProps>
 				<div className={"choices"}>
 					{choices}
 				</div>
-			</div>
 		</BasePage>;
 	}
 }
