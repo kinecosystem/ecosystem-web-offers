@@ -5,21 +5,24 @@
     handleCancel(): void;
 ****/
 
-declare var KinNative: {
+export type KinNative = {
 	[key: string]: (...data: any[]) => void;
 };
+
+declare var KinNative: KinNative;
 
 declare global {
 	interface Window {
 		kin: { renderPoll: (data: any) => void };
 		webkit: any;
+		KinNative: KinNative;
 	}
 }
 
 
 function callNativeMethod(methodName: string, ...payload: any[]) {
 	console.log("calling method", methodName);
-	if (KinNative && methodName in KinNative) {
+	if (window.KinNative && methodName in KinNative) {
 		return KinNative[ methodName ](...payload);
 	}
 	if (window.webkit && window.webkit.messageHandlers && methodName in window.webkit.messageHandlers) {
