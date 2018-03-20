@@ -73,19 +73,21 @@ class App extends React.Component {
 		const newPageIndex = this.state.currentPage + 1;
 		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
 		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
+
 		if (isComplete) {
 			if (Object.keys(allData)) {
 				console.log("submit " + JSON.stringify(allData));
 				bridge.submitResult(allData);
 			}
-			return bridge.close();
+
+			return;
 		}
+
 		this.setState({
 			currentPage: newPageIndex,
 			data: allData,
 			isComplete,
 		});
-
 	}
 
 	private renderPages() {
