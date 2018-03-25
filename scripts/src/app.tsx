@@ -2,11 +2,11 @@ import * as React from "react";
 
 import Carousel from "./ui/container/carousel";
 import * as  bridge from "./bridge";
-import FinalPage from "./ui/page/final";
 import ImageAndTextPage from "./ui/page/imageAndText";
 import FullPageMultiChoice from "./ui/page/multichoice.question";
 
 import "../../styles/src/app.styl";
+import { EarnThankYou } from "./ui/page/earnThankYou";
 
 export interface AppState {
 	pages: any;
@@ -18,7 +18,7 @@ export interface AppState {
 enum PageType {
 	"FullPageMultiChoice",
 	"ImageAndText",
-	"Html",
+	"EarnThankYou",
 }
 
 let pages: any = [];
@@ -95,10 +95,10 @@ class App extends React.Component {
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
 					return <FullPageMultiChoice key={index} choices={page.question.choices} id={page.question.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
-				case PageType.Html:
-					return <FinalPage key={index} doneBtnCallback={bridge.close}/>;
 				case PageType.ImageAndText:
 					return <ImageAndTextPage key={index} id={page.id} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
+				case PageType.EarnThankYou:
+					return <EarnThankYou key={index} amount={"6,000"}/>;
 			}
 		});
 	}

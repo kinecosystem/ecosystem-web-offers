@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <script>
-		<!-- If no native Android or iOS bridge interface, install mock native bridge interface -->
-
-        if (!window.KinNative && (!window.webkit || !window.webkit.messageHandlers)) {
+		// If no native Android or iOS bridge interface, install mock native bridge interface
+		if (!window.KinNative && (!window.webkit || !window.webkit.messageHandlers)) {
+			console.log("Using mock");
 			window.KinNative = {
 				loaded: () => {
 					console.log("Native received: loaded");
@@ -38,17 +38,22 @@
 									footerHtml: "Finish the tutorial and earn 6,000 Kin",
 									buttonText: "Got It",
 								},
+								{
+									type: 2,
+								},
 								// {
 								// 	type: 0,
 								// 	title: "Who do you primarily chat with on Kik?",
 								// 	description: "Finish the poll to earn <span style='color:#047cfc;'>6,000</span> Kin",
-								// 	id: "G@#$",
-								// 	choices: [
-								// 		"New friends I’ve met on Kik",
-								// 		"Friends I’ve met elsewhere online",
-								// 		"Friends I know from real life",
-								// 		"An equal mix of all three!",
-								// 	],
+								// 	question: {
+								// 		id: "G@#$",
+								// 		answers: [
+								// 			"New friends I’ve met on Kik",
+								// 			"Friends I’ve met elsewhere online",
+								// 			"Friends I know from real life",
+								// 			"An equal mix of all three!",
+								// 		],
+								// 	},
 								// },
 							]
 						}
@@ -59,9 +64,8 @@
 					() => console.log("Native received: cancel"),
 			}
 		}
-		;
     </script>
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">-->
 </head>
 <body>
 <div id="root"></div>
