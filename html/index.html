@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <script>
-		<!-- If no native Android or iOS bridge interface, install mock native bridge interface -->
+		// If no native Android or iOS bridge interface, install mock native bridge interface
 		if (!window.KinNative && (!window.webkit || !window.webkit.messageHandlers)) {
 			console.log("Using mock");
 			window.KinNative = {

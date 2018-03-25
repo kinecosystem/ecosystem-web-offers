@@ -27,7 +27,6 @@ function setRenderPollHandler(callback: () => void) {
 	window.kin.renderPoll = data => {
 		console.log("In renderPoll:" + JSON.stringify(data));
 		pages = data.pages.map((item: any) => {
-			console.log("page:", item);
 			if (item.question) {
 				item.question.choices = item.question.answers;
 			}

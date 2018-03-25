@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29">
+    <g fill="none" fill-rule="evenodd" stroke="#82FFEE" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3.816 11.13l20.72 6.793-2.083 6.467-5.313 2.58-12.762-4.183-2.644-5.19z"/>
+        <path fill="#82FFEE" fill-opacity=".5" fill-rule="nonzero" d="M7.669 12.31l12.963 4.333-1.308 4.06-3.327 1.57-7.957-2.608-1.628-3.194z"/>
+        <path fill="#82FFEE" fill-opacity=".3" fill-rule="nonzero" d="M6.412 16.47l1.628 3.195-3.662 3.122-2.644-5.19zM15.997 22.273l1.143 4.698 5.313-2.581-3.129-3.686z"/>
+        <path fill="#82FFEE" fill-opacity=".3" fill-rule="nonzero" d="M6.412 16.47l7.764-1.944-6.136 5.139zM14.176 14.526l1.82 7.747 3.328-1.57z"/>
+        <path d="M3.816 11.13l20.72 6.793 2.031-6.567-2.695-5.29L11.11 1.882l-5.163 2.63z"/>
+        <path fill="#82FFEE" fill-opacity=".5" fill-rule="nonzero" d="M7.669 12.31l12.963 4.333 1.307-4.06-1.729-3.394-7.957-2.609-3.276 1.67z"/>
+        <path fill="#82FFEE" fill-opacity=".3" fill-rule="nonzero" d="M8.977 8.25l3.276-1.67-1.143-4.698-5.163 2.63zM20.21 9.189l3.662-3.123 2.695 5.29-4.628 1.226z"/>
+        <path fill="#82FFEE" fill-opacity=".3" fill-rule="nonzero" d="M8.977 8.25l5.199 6.276-1.923-7.946zM14.176 14.526L20.21 9.19l1.73 3.393z"/>
+    </g>
+</svg>

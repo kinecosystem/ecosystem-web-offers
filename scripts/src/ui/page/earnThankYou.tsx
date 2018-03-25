@@ -7,30 +7,24 @@ export interface EarnThankYouProps {
 	amount: number;
 }
 
-const getImageUrl = (imageName: string) => "https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg".replace("${imageName}", imageName);
+const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
 export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
 	public render() {
+		const diamonds = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
+			.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
 		return (
-			<BasePage className={"earnThankYou"}>
+			<BasePage className="earnThankYou">
 
-				<div className={"text"}>
+				<div className="text">
 					<div>Yay! you've earned</div>
-					<div className={"amount"}>{this.props.amount}</div>
-					<img src={getImageUrl("kin-type")} className={"kin-type"}/>
+					<div className="amount">{this.props.amount}</div>
+					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>
 				<div className={"footer"}>
-					<img src={getImageUrl("coins")} className={"coins"}/>
-					<img src={getImageUrl("sparks")} className={"sparks"}/>
-					<img src={getImageUrl("diamond-l-1")} className={"diamond-l-1 diamonds"}/>
-					<img src={getImageUrl("diamond-l-2")} className={"diamond-l-2 diamonds"}/>
-					<img src={getImageUrl("diamond-l-3")} className={"diamond-l-3 diamonds"}/>
-					<img src={getImageUrl("diamond-l-4")} className={"diamond-l-4 diamonds"}/>
-					<img src={getImageUrl("diamond-c-1")} className={"diamond-c-1 diamonds"}/>
-					<img src={getImageUrl("diamond-c-2")} className={"diamond-c-2 diamonds"}/>
-					<img src={getImageUrl("diamond-r-3")} className={"diamond-r-3 diamonds"}/>
-					<img src={getImageUrl("diamond-r-2")} className={"diamond-r-2 diamonds"}/>
-					<img src={getImageUrl("diamond-r-1")} className={"diamond-r-1 diamonds"}/>
+					<img src={getImageUrl("coins")} className="coins"/>
+					<img src={getImageUrl("sparks")} className="sparks"/>
+					{ diamonds }
 				</div>
 			</BasePage>
 		);
