@@ -5,11 +5,16 @@ import "../../../../styles/src/page/earnThankYou.styl";
 
 export interface EarnThankYouProps {
 	amount: number;
+	closeCb: () => void;
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
 export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
+	public componentDidUpdate() {
+		setTimeout(this.props.closeCb, 3000);
+	}
+
 	public render() {
 		const diamonds = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
 			.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
@@ -24,7 +29,7 @@ export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
 				<div className={"footer"}>
 					<img src={getImageUrl("coins")} className="coins"/>
 					<img src={getImageUrl("sparks")} className="sparks"/>
-					{ diamonds }
+					{diamonds}
 				</div>
 			</BasePage>
 		);

@@ -41,9 +41,14 @@ export function submitResult(data: any) {
 	callNativeMethod("handleResult", JSON.stringify(data));
 }
 
+export function cancel() {
+	console.log("Requesting to Cancel");
+	callNativeMethod("handleCancel");
+}
+
 export function close() {
 	console.log("Requesting to close");
-	callNativeMethod("handleCancel");
+	callNativeMethod("handleClose");
 }
 
 window.kin = window.kin || {};

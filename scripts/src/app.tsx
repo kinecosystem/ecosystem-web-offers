@@ -78,6 +78,7 @@ class App extends React.Component {
 			if (Object.keys(allData)) {
 				console.log("submit " + JSON.stringify(allData));
 				bridge.submitResult(allData);
+				bridge.close();
 			}
 
 			return;
@@ -98,7 +99,7 @@ class App extends React.Component {
 				case PageType.ImageAndText:
 					return <ImageAndTextPage key={index} id={page.id} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
-					return <EarnThankYou key={index} amount={"6,000"}/>;
+					return <EarnThankYou key={index} closeCb={bridge.close.bind(bridge)} amount={"6,000"}/>;
 			}
 		});
 	}
