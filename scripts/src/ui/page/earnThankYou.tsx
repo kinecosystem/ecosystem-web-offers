@@ -6,13 +6,19 @@ import "../../../../styles/src/page/earnThankYou.styl";
 export interface EarnThankYouProps {
 	amount: number;
 	closeCb: () => void;
+	hideTopBarCB: () => void;
+	isDisplayed: boolean;  // is this the currently displayed page
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
 export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
 	public componentDidUpdate() {
-		setTimeout(this.props.closeCb, 3000);
+		console.log("update");
+		if (this.props.isDisplayed) {
+			this.props.hideTopBarCB();
+			setTimeout(this.props.closeCb, 3000);
+		}
 	}
 
 	public render() {
