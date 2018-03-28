@@ -98,7 +98,7 @@ class App extends React.Component {
 				case PageType.FullPageMultiChoice:
 					return <FullPageMultiChoice key={index} choices={page.question.choices} id={page.question.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
 				case PageType.ImageAndText:
-					return <ImageAndTextPage key={index} id={page.id} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
+					return <ImageAndTextPage key={index} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
 					return <EarnThankYou key={index} isDisplayed={this.state.currentPage === index} closeCb={this.onPageCompleteHandler} hideTopBarCB={bridge.hideTopBar} amount={"6,000"}/>;
 			}
