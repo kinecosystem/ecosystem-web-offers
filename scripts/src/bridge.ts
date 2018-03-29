@@ -41,9 +41,24 @@ export function submitResult(data: any) {
 	callNativeMethod("handleResult", JSON.stringify(data));
 }
 
+export function hideTopBar() {
+	console.log("Requesting to hide the native top bar");
+	callNativeMethod("displayTopBar", false);
+}
+
+export function showTopBar() {
+	console.log("Requesting to hide the native top bar");
+	callNativeMethod("displayTopBar", true);
+}
+
+export function cancel() {
+	console.log("Requesting to Cancel");
+	callNativeMethod("handleCancel");
+}
+
 export function close() {
 	console.log("Requesting to close");
-	callNativeMethod("handleCancel");
+	callNativeMethod("handleClose");
 }
 
 window.kin = window.kin || {};
