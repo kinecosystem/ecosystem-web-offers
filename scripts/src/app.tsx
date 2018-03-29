@@ -80,7 +80,6 @@ class App extends React.Component {
 				bridge.submitResult(allData);
 				bridge.close();
 			}
-
 			return;
 		}
 
@@ -100,7 +99,7 @@ class App extends React.Component {
 				case PageType.ImageAndText:
 					return <ImageAndTextPage key={index} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
-					return <EarnThankYou key={index} isDisplayed={this.state.currentPage === index} closeCb={this.onPageCompleteHandler} hideTopBarCB={bridge.hideTopBar} amount={"6,000"}/>;
+					return <EarnThankYou key={index} isDisplayed={this.state.currentPage === index} closeCb={this.onPageCompleteHandler} hideTopBarCB={bridge.hideTopBar} amount={page.description}/>;
 			}
 		});
 	}

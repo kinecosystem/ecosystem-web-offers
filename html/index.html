@@ -40,6 +40,7 @@
 								},
 								{
 									type: 2,
+                                    description: "4,500"
 								},
 								// {
 								// 	type: 0,
@@ -60,8 +61,9 @@
 					)
 				},
 				handleResult: (resultsString) => console.log("native received result:", resultsString),
-				handleCancel:
-					() => console.log("Native received: cancel"),
+				handleClose: () => console.log("Native received: close"),
+				displayTopBar: (...args) => console.log("Native received: displayTopBar", ...args),
+				handleCancel: () => console.log("Native received: cancel"),
 			}
 		}
     </script>
