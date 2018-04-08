@@ -5,8 +5,8 @@ import "../../../../styles/src/page/earnThankYou.styl";
 
 export interface EarnThankYouProps {
 	amount: number;
-	closeCb: () => void;
-	hideTopBarCB: () => void;
+	closeHandler: () => void;
+	hideTopBarHandler: () => void;
 	isDisplayed: boolean;  // is this the currently displayed page
 }
 
@@ -16,8 +16,8 @@ export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
 	public componentDidUpdate() {
 		console.log("update");
 		if (this.props.isDisplayed) {
-			this.props.hideTopBarCB();
-			setTimeout(this.props.closeCb, 3000);
+			this.props.hideTopBarHandler();
+			setTimeout(this.props.closeHandler, 3000);
 		}
 	}
 

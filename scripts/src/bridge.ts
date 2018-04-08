@@ -47,7 +47,7 @@ export function hideTopBar() {
 }
 
 export function showTopBar() {
-	console.log("Requesting to hide the native top bar");
+	console.log("Requesting to show the native top bar");
 	callNativeMethod("displayTopBar", true);
 }
 
