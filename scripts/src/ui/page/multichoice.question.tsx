@@ -8,7 +8,7 @@ export interface FullPageMultiChoiceProps {
 	title: string;
 	description: string;
 	choices: string[];
-	onSelected: (answerData: {}) => void;
+	onSelected: (answerData: object) => void;
 }
 
 export interface FullPageMultiChoiceState {
@@ -26,18 +26,16 @@ class MultichoiceQuestion extends React.Component<FullPageMultiChoiceProps, Full
 	}
 
 	private onSelect(value: string) {
-		{
 			if (this.state.disabled) {
 				return;
 			}
 			this.setState({ disabled: true }, () => {
 				this.props.onSelected({ [ this.props.id ]: value });
 			});
-		}
 	}
 
 	public render() {
-		this.buttons = this.props.choices.map((value: string, index: number) => {
+		this.buttons = this.props.choices.map((value, index) => {
 			return <button key={index} className="choice" disabled={ this.state.disabled } onClick={this.onSelect.bind(this, value)}>{value}</button>;
 		});
 		return <BasePage className="question multichoice">

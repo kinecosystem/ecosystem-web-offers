@@ -60,7 +60,15 @@ module.exports = env => {
 		plugins: [
 			new HtmlWebpackPlugin({
 				template: htmlTemplate,
-			})]
+			}),
+/*
+			// Uncomment For production
+			new webpack.DefinePlugin({
+				'process.env.NODE_ENV': JSON.stringify('production')
+			}),
+			new webpack.optimize.UglifyJsPlugin(),
+*/
+		]
 	};
 
 	if (!isNotProd) {
