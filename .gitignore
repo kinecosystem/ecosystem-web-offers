@@ -7,3 +7,4 @@ styles/bin
 
 index.html
 main.bundle.js
+*.gz

@@ -10,38 +10,41 @@
 		"@types/react-dom": "^16.0.4",
 		"@types/react-swipeable-views": "^0.12.1",
 		"babel-polyfill": "^6.26.0",
-		"css-loader": "^0.28.9",
 		"react": "^16.2.0",
 		"react-dom": "^16.2.0",
-		"react-swipeable-views": "^0.12.13",
-		"style-loader": "^0.20.1",
-		"tslint-eslint-rules": "^4.1.1"
+		"react-swipeable-views": "^0.12.13"
 	},
 	"devDependencies": {
-		"html-webpack-plugin": "^2.30.1",
+		"compression-webpack-plugin": "^1.1.11",
+		"html-webpack-plugin": "^3.2.0",
 		"npm-run-all": "^4.1.2",
 		"rimraf": "^2.6.2",
 		"run-s": "0.0.0",
 		"stylus": "^0.54.5",
-		"stylus-loader": "^3.0.1",
-		"ts-loader": "^3.5.0",
+		"stylus-loader": "^3.0.2",
+		"css-loader": "^0.28.9",
+		"style-loader": "^0.21.0",
+		"ts-loader": "^4.2.0",
 		"tslint": "^5.9.1",
 		"typescript": "^2.6.2",
-		"webpack": "^3.10.0",
+		"tslint-eslint-rules": "^4.1.1",
+		"webpack": "^4.8.3",
 		"webpack-bundle-analyzer": "^2.11.0",
-		"webpack-config-utils": "^2.3.0",
-		"webpack-dev-server": "^2.11.1"
+		"webpack-cli": "^2.1.2",
+		"webpack-dev-server": "^3.1.4",
+		"webpack-merge": "^4.1.2"
 	},
 	"scripts": {
 		"clean": "rimraf scripts/bin",
 		"transpile": "tsc -p scripts",
 		"transpile-watch": "npm run transpile -- --watch",
-		"serve": "webpack-dev-server --no-info --color",
-		"serve-public": "webpack-dev-server --no-info --colors --port 3330 --host 0.0.0.0",
+		"serve": "webpack-dev-server --color  --config webpack.dev.js",
+		"serve-public": "webpack-dev-server --no-info --colors --port 3330 --host 0.0.0.0  --config webpack.dev.js",
 		"dev": "npm-run-all transpile -p transpile-watch serve",
-		"bundle": "webpack --env.prod --progress --colors",
+		"bundle": "webpack --env.prod --progress --colors -p --config webpack.prod.js",
 		"build": "run-s transpile bundle",
 		"test": "echo \"Error: no tests defined\" && exit 1",
-		"analyze": "webpack --profile --json > stats.tmp.json; webpack-bundle-analyzer stats.tmp.json && rm stats.tmp.json"
+		"upload": "aws s3 cp main.bundle.js.gz s3://htmlpoll.kinecosystem.com/main.bundle.js --content-encoding gzip --acl public-read && aws s3 cp index.html s3://htmlpoll.kinecosystem.com/index.html --acl public-read",
+		"analyze": "webpack --profile --json  --config webpack.prod.js > stats.tmp.json; webpack-bundle-analyzer stats.tmp.json && rm stats.tmp.json"
 	}
 }
