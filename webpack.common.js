@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const htmlTemplate = path.join(htmlPath, "index.html");
 
 module.exports = {
-		entry: [ path.join(__dirname, "scripts", "src", "index.tsx")],
+		entry: ["babel-polyfill", path.join(__dirname, "scripts", "src", "index.tsx")],
 		target: "web",
 		output: {
 			path: outPath,
