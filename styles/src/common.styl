@@ -1,3 +1,12 @@
+/*** Colors ***/
+$deep-sky-blue = #047cfc
+$blue-grey = #7884a5
+$bright-sky-blue = #08c6f1
+$bright-blue = #0262ff
+$green-blue = #00d093
+$watermelon = #ff4b67
+
+/*** Mixins ***/
 flex-box($direction = row, $justify = flex-start, $align = stretch)
 	// $align only supports stretch and center
 	// $direction only supports row and column
@@ -27,13 +36,10 @@ btn()
 	border: solid 1px #7884a5
 	outline none
 
+btn-active()
+	background-color: #047cfc
+	border-color: #047cfc
+	color white
+
 .hidden
 	display: none
-
-
-
-/*** Colors ***/
-$deep-sky-blue = #047cfc
-$blue-grey = #7884a5
-$bright-sky-blue = #08c6f1
-$bright-blue = #0262ff

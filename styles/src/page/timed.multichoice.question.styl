@@ -1,0 +1,37 @@
+@require "../common.styl"
+
+.page.question.multichoice.timed
+	.header
+		.timer
+			width: 15vw
+			font-size: 6.2vw
+			text-align: center
+			letter-spacing: -0.5px
+			margin: 10% auto 1%
+			font-roboto()
+			color: $green-blue
+			&.warn
+				color: $watermelon
+
+		.pageProgress
+			font-roboto()
+			font-weight: bold;
+			width: 12vw
+			font-size: 4.5vw
+			text-align: center
+			letter-spacing: -0.5px
+			margin: 5% auto 1%
+			color: $deep-sky-blue
+
+		.title
+			margin: 2% auto 10%
+	.choices
+		.choice
+			.receivedAmount
+				opacity 0
+				transition: all .5s ease;
+				position absolute
+				right 5vw
+			&.selected.rightAnswer
+				.receivedAmount
+					opacity 1
