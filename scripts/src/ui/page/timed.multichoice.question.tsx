@@ -3,28 +3,31 @@ import { FullPageMultiChoiceProps, MultichoiceQuestion } from "./multichoice.que
 
 import "../../../../styles/src/page/timed.multichoice.question.styl";
 
-const quizTimerTime = 300;
+const quizTimerTime = 10;
 const quizTimerWarnAt = 5;
 
 interface TimerProps {
 	time: number;
+	parent: number;
+	pause: boolean;
 
 	callback(): void;
 }
 
-class Timer extends React.Component<TimerProps, any> {
+interface TimerState {
+	started: boolean;
+	time: number;
+}
+
+class Timer extends React.Component<TimerProps, TimerState> {
 	constructor(props: TimerProps) {
 		super(props);
+		console.log("timer constructor, props:", props);
+		this.updateTime = this.updateTime.bind(this);
 		this.state = {
 			started: false,
 			time: this.props.time,
 		};
-	}
-
-	public componentDidUpdate() {
-		if (!this.state.started) {
-			setTimeout(this.updateTime.bind(this), 1000);
-		}
 	}
 
 	public render() {
@@ -37,14 +40,25 @@ class Timer extends React.Component<TimerProps, any> {
 		);
 	}
 
+	public componentDidUpdate() {
+		console.log("Timer componentDidUpdate, state.started %s, parent %s", this.state.started, this.props.parent);
+		if (!this.state.started) {
+			setTimeout(this.updateTime, 1000);
+		}
+	}
+
 	private updateTime() {
+		if (this.props.pause) {
+			return;
+		}
+		console.log("timer updateTime", this.state, this.props.parent);
 		const newTime = this.state.time - 1;
 		if (newTime === 0) {
 			this.props.callback();
 			return;
 		}
 
-		this.setState({ time: newTime, started: true }, () => setTimeout(this.updateTime.bind(this), 1000));
+		this.setState({ time: newTime, started: true }, () => setTimeout(this.updateTime, 1000));
 	}
 }
 
@@ -56,10 +70,14 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 	}
 
 	protected getHeader() {
+		const currentPage = this.props.pageIndex + 1;
+		/* the list is 0 based */
+		const totalQuestionPages = this.props.totalPagesCount - 1;
+		/* the list contains a Thank you page --- a better solution is better */
 		return (
 			<React.Fragment>
-				<Timer time={quizTimerTime} callback={this.onSelect.bind(this, null)}/>
-				<div className={"pageProgress"}>{this.props.currentPage + 1 /* the list is 0 based */}/{this.props.totalPagesCount - 1 /* the list contains a Thank you page */}</div>
+				<Timer parent={this.props.pageIndex} pause={!this.props.isDisplayed} time={quizTimerTime} callback={this.onSelect.bind(this, null, -1)}/>
+				<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
 				<div className="title">{this.props.title}</div>
 			</React.Fragment>
 		);
@@ -68,7 +86,13 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 	protected getButtons() {
 		return this.props.choices.map((value: any, index: number) => {
 			const additionalClasses = this.getAdditionalButtonClasses(value, index);
-			return <button key={index} className={"choice " + additionalClasses} disabled={this.state.disabled} onClick={this.onSelect.bind(this, value, index)}>{value} <span className={"receivedAmount"}>+{this.props.amount}</span></button>;
+			const clickCb = this.onSelect.bind(this, value, index);
+			return (
+				<button key={index} className={"choice " + additionalClasses} disabled={this.state.disabled} onClick={clickCb}>
+					{value}
+					<span className={"receivedAmount"}>+{this.props.amount}</span>
+				</button>
+			);
 		});
 	}
 

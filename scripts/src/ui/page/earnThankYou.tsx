@@ -7,8 +7,8 @@ import "../../../../styles/src/page/earnThankYou.styl";
 export interface EarnThankYouProps extends CommonProps {
 	amount: number;
 	closeHandler(answerData: any): void;
-	hideTopBarHandler(): void;
 	isDisplayed: boolean;  // is this the currently displayed page
+	hideTopBarHandler(): void;
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;

@@ -17,25 +17,32 @@ export interface AppState {
 }
 
 export enum PageType {
-	"FullPageMultiChoice",
-	"ImageAndText",
-	"EarnThankYou",
-	"TimedFullPageMultiChoice",
-	"SuccessBasedThankYou",
+	FullPageMultiChoice = "FullPageMultiChoice",
+	ImageAndText = "ImageAndText",
+	EarnThankYou = "EarnThankYou",
+	TimedFullPageMultiChoice = "TimedFullPageMultiChoice",
+	SuccessBasedThankYou = "SuccessBasedThankYou",
 }
+
+export interface SharedData {
+	wrongAnswers?: {};
+	earnedAmount?: number;
+};
 
 export interface CommonProps {
 	key: number;
+	pageIndex: number;
 	id: string;
 	title: string;
+	isDisplayed: boolean;
 	totalPagesCount: number;
 	currentPage: number;
-	sharedData: { [key: string]: any };
+	sharedData: SharedData;
 	updateSharedDate(data: any): void;
 }
 
+const sharedPageData = {};
 let pages: any = [];
-let sharedPageData = {};
 
 function setRenderPollHandler(callback: () => void) {
 	window.kin.renderPoll = data => {
@@ -53,6 +60,7 @@ function setRenderPollHandler(callback: () => void) {
 
 class App extends React.Component {
 	public state: AppState;
+
 	constructor(props: any) {
 		super(props);
 		setRenderPollHandler(() => {
@@ -109,11 +117,13 @@ class App extends React.Component {
 
 	private renderPages() {
 		return this.state.pages.map((page: any, index: number) => {
-			console.log("render pages, this.state.currentPage %s, index %s, page ", this.state.currentPage, index, PageType[page.type]);
-			const commonProps: CommonProps  = {
+			console.log("render pages, this.state.currentPage %s, index %s, page ", this.state.currentPage, index, PageType[ page.type ]);
+			const commonProps: CommonProps = {
 				key: index,
+				pageIndex: index,
 				id: page.question && page.question.id,
 				title: page.title,
+				isDisplayed: this.state.currentPage === index,
 				totalPagesCount: this.state.pages.length,
 				currentPage: this.state.currentPage,
 				sharedData: sharedPageData,
@@ -122,7 +132,7 @@ class App extends React.Component {
 
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
-					return <MultichoiceQuestion {...commonProps} choices={page.question.choices} description={page.description} onSelected={this.onPageCompleteHandler}  rightAnswer={page.rightAnswer}/>;
+					return <MultichoiceQuestion {...commonProps} choices={page.question.choices} description={page.description} onSelected={this.onPageCompleteHandler} rightAnswer={page.rightAnswer}/>;
 				case PageType.ImageAndText:
 					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
@@ -131,7 +141,6 @@ class App extends React.Component {
 					return <TimedMultichoiceQuestion {...commonProps} choices={page.question.choices} title={page.description} onSelected={this.onPageCompleteHandler} amount={page.amount} rightAnswer={page.rightAnswer}/>;
 				case PageType.SuccessBasedThankYou:
 					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar}/>;
-
 			}
 		});
 	}

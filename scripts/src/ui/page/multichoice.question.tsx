@@ -1,7 +1,7 @@
 import * as React from "react";
 import BasePage from "./base";
 import { ButtonHTMLAttributes } from "react";
-import { CommonProps } from "../../app";
+import { CommonProps, SharedData } from "../../app";
 
 import "../../../../styles/src/page/multichoice.question.styl";
 
@@ -75,27 +75,32 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 	}
 
 	protected onSelect(value: string, index: number) {
-		let delay = 0;
 		const props = this.props;
+		const sharedData = props.sharedData;
 		const oneBasedIndex = index + 1;
+		const isRightAnswer = oneBasedIndex === props.rightAnswer;
+		const results = { [ this.props.id ]: value };
+		const newSharedData: SharedData = isRightAnswer ? {} : { wrongAnswers: Object.assign({}, sharedData.wrongAnswers, results) };
+		let delay = 0;
+
 		if (this.state.disabled) {
 			return;
 		}
 		if (this.highlightRightWrong) {
 			delay = 1500;
-			console.log("answer", oneBasedIndex === props.rightAnswer ? null : oneBasedIndex);
+			console.log("answer ", isRightAnswer ? null : oneBasedIndex);
 			this.setState({
-				wrongAnswer: oneBasedIndex === props.rightAnswer ? null : oneBasedIndex,
+				wrongAnswer: isRightAnswer ? null : oneBasedIndex,
 				selectedAnswer: index,
 			});
 		}
-		if (props.amount && oneBasedIndex === props.rightAnswer) {
-			props.updateSharedDate({
-					earnedAmount: (props.sharedData.earnedAmount || 0) + props.amount,
-				});
+
+		if (props.amount && isRightAnswer) {
+			newSharedData.earnedAmount = (sharedData.earnedAmount || 0) + (props.amount as number);
 		}
+		props.updateSharedDate(newSharedData);
 		this.setState({ disabled: true, selectedAnswer: index }, () => {
-			setTimeout(this.props.onSelected.bind(this.props, { [ this.props.id ]: value }), delay);
+			setTimeout(this.props.onSelected.bind(this.props, results), delay);
 		});
 	}
 

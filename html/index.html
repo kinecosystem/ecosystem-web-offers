@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <script>
 
-(function (PageType) {
-    PageType[PageType["FullPageMultiChoice"] = 0] = "FullPageMultiChoice";
-    PageType[PageType["ImageAndText"] = 1] = "ImageAndText";
-    PageType[PageType["EarnThankYou"] = 2] = "EarnThankYou";
-    PageType[PageType["TimedFullPageMultiChoice"] = 3] = "TimedFullPageMultiChoice";
-    PageType[PageType["SuccessBasedThankYou"] = 4] = "SuccessBasedThankYou";
-})(PageType = {})
+		(function (PageType) {
+			PageType["FullPageMultiChoice"] = "FullPageMultiChoice";
+			PageType["ImageAndText"] = "ImageAndText";
+			PageType["EarnThankYou"] = "EarnThankYou";
+			PageType["TimedFullPageMultiChoice"] = "TimedFullPageMultiChoice";
+			PageType["SuccessBasedThankYou"] = "SuccessBasedThankYou";
+		})(PageType = {})
 
-        // If no native Android or iOS bridge interface, install mock native bridge interface
+		// If no native Android or iOS bridge interface, install mock native bridge interface
 		if (!window.KinNative && (!window.webkit || !window.webkit.messageHandlers)) {
 			console.log("Using mock");
 			window.KinNative = {
@@ -93,7 +93,7 @@
 									type: PageType.TimedFullPageMultiChoice,
 									description: "How much wood could a woodchuck chuck?",
 									amount: 15,
-									rightAnswer: 3,
+									rightAnswer: 2,
 									question: {
 										id: "wrtwrthwrhr",
 										answers: [
@@ -101,6 +101,36 @@
 											"A woodchuck would chuck as much wood as a woodchuck could chuck",
 											"320 kg",
 											"361.9237001 cm3",
+										],
+									},
+								},
+								{
+									type: PageType.TimedFullPageMultiChoice,
+									description: "Yes?",
+									amount: 20,
+									rightAnswer: 3,
+									question: {
+										id: "eee",
+										answers: [
+											"Of course",
+											"no",
+											"320 kg",
+											"Camel",
+										],
+									},
+								},
+								{
+									type: PageType.TimedFullPageMultiChoice,
+									description: "Color?",
+									amount: 15,
+									rightAnswer: 4,
+									question: {
+										id: "eee",
+										answers: [
+											"Yellow",
+											"Red",
+											"Crimson",
+											"Dorothy",
 										],
 									},
 								},
