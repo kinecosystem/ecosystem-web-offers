@@ -3,10 +3,11 @@ import * as React from "react";
 import Carousel from "./ui/container/carousel";
 import * as  bridge from "./bridge";
 import ImageAndTextPage from "./ui/page/imageAndText";
-import FullPageMultiChoice from "./ui/page/multichoice.question";
-
+import { MultichoiceQuestion } from "./ui/page/multichoice.question";
+import TimedMultichoiceQuestion from "./ui/page/timed.multichoice.question";
 import "../../styles/src/app.styl";
 import { EarnThankYou } from "./ui/page/earnThankYou";
+import { SuccessBasedThankYou } from "./ui/page/successBasedThankYou";
 
 export interface AppState {
 	pages: any;
@@ -15,12 +16,32 @@ export interface AppState {
 	data: {};
 }
 
-enum PageType {
-	"FullPageMultiChoice",
-	"ImageAndText",
-	"EarnThankYou",
+export enum PageType {
+	FullPageMultiChoice = "FullPageMultiChoice",
+	ImageAndText = "ImageAndText",
+	EarnThankYou = "EarnThankYou",
+	TimedFullPageMultiChoice = "TimedFullPageMultiChoice",
+	SuccessBasedThankYou = "SuccessBasedThankYou",
 }
 
+export interface SharedData {
+	wrongAnswers?: {};
+	earnedAmount?: number;
+};
+
+export interface CommonProps {
+	key: number;
+	pageIndex: number;
+	id: string;
+	title: string;
+	isDisplayed: boolean;
+	totalPagesCount: number;
+	currentPage: number;
+	sharedData: SharedData;
+	updateSharedDate(data: any): void;
+}
+
+const sharedPageData = {};
 let pages: any = [];
 
 function setRenderPollHandler(callback: () => void) {
@@ -90,16 +111,36 @@ class App extends React.Component {
 		});
 	}
 
+	private updateSharedData(data: any) {
+		Object.assign(sharedPageData, data);
+	}
+
 	private renderPages() {
 		return this.state.pages.map((page: any, index: number) => {
-			console.log("render pages, this.state.currentPage %s, index %s, page ", this.state.currentPage, index, PageType[page.type]);
+			console.log("render pages, this.state.currentPage %s, index %s, page ", this.state.currentPage, index, PageType[ page.type ]);
+			const commonProps: CommonProps = {
+				key: index,
+				pageIndex: index,
+				id: page.question && page.question.id,
+				title: page.title,
+				isDisplayed: this.state.currentPage === index,
+				totalPagesCount: this.state.pages.length,
+				currentPage: this.state.currentPage,
+				sharedData: sharedPageData,
+				updateSharedDate: this.updateSharedData,
+			};
+
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
-					return <FullPageMultiChoice key={index} choices={page.question.choices} id={page.question.id} title={page.title} description={page.description} onSelected={this.onPageCompleteHandler}/>;
+					return <MultichoiceQuestion {...commonProps} choices={page.question.choices} description={page.description} onSelected={this.onPageCompleteHandler} rightAnswer={page.rightAnswer}/>;
 				case PageType.ImageAndText:
-					return <ImageAndTextPage key={index} image={page.image} title={page.title} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
+					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
-					return <EarnThankYou key={index} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar} amount={page.description}/>;
+					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar} amount={page.description}/>;
+				case PageType.TimedFullPageMultiChoice:
+					return <TimedMultichoiceQuestion {...commonProps} choices={page.question.choices} title={page.description} onSelected={this.onPageCompleteHandler} amount={page.amount} rightAnswer={page.rightAnswer}/>;
+				case PageType.SuccessBasedThankYou:
+					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar}/>;
 			}
 		});
 	}

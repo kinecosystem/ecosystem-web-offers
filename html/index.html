@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <script>
+
+		(function (PageType) {
+			PageType["FullPageMultiChoice"] = "FullPageMultiChoice";
+			PageType["ImageAndText"] = "ImageAndText";
+			PageType["EarnThankYou"] = "EarnThankYou";
+			PageType["TimedFullPageMultiChoice"] = "TimedFullPageMultiChoice";
+			PageType["SuccessBasedThankYou"] = "SuccessBasedThankYou";
+		})(PageType = {})
+
 		// If no native Android or iOS bridge interface, install mock native bridge interface
 		if (!window.KinNative && (!window.webkit || !window.webkit.messageHandlers)) {
 			console.log("Using mock");
@@ -11,8 +20,9 @@
 					console.log("Native received: loaded");
 					window.kin.renderPoll({
 							pages: [
+								//*** Tutorial ***//
 								// {
-								// 	type: 1,
+								// 	type: PageType.ImageAndText,
 								// 	id: "ASsdgASD#$5F",
 								// 	image: "https://s3.amazonaws.com/htmlpoll.kinecosystem.com/kinlogoTut%403x.png",
 								// 	title: "What is Kin?",
@@ -22,7 +32,7 @@
 								// },
 								// {
 								// 	id: "3e#$5F",
-								// 	type: 1,
+								// 	type: PageType.ImageAndText,
 								// 	image: "https://s3.amazonaws.com/htmlpoll.kinecosystem.com/kinMarketplaceIcon%403x.png",
 								// 	title: "Kin Marketplace",
 								// 	bodyHtml: "The Kin Marketplace experience provides you with a core wallet functionally which includes a place to view your balance as well as incoming/outgoing payments. The Marketplace is a home base where you can engage in the earn/spend opportunities.",
@@ -31,7 +41,7 @@
 								// },
 								// {
 								// 	id: "ASDFASD#$5F",
-								// 	type: 1,
+								// 	type: PageType.ImageAndText,
 								// 	image: "https://s3.amazonaws.com/htmlpoll.kinecosystem.com/walletsIcon%403x.png",
 								// 	title: "How to earn/spend Kin?",
 								// 	bodyHtml: "You can earn Kin by investing a little time to complete tasks such as answering short surveys, watching a video or reading a tutorial just like this one.",
@@ -39,25 +49,93 @@
 								// 	buttonText: "Got It",
 								// },
 								// {
-								// 	type: 2,
+								// 	type: PageType.EarnThankYou,
 								//    description: "4,500"
 								// },
+
+								//*** Poll ***//
+								// {
+								// 	type: PageType.FullPageMultiChoice,
+								// 	title: "Who do you primarily chat with on Kik?",
+								// 	description: "Finish the poll to earn <span style='color:#047cfc;'>6,000</span> Kin",
+								// 	question: {
+								// 		id: "G@#$",
+								// 		answers: [
+								// 			"New friends I’ve met on Kik",
+								// 			"Friends I’ve met elsewhere online",
+								// 			"Friends I know from real life",
+								// 			"An equal mix of all three!",
+								// 		],
+								// 	},
+								// },
+								// {
+								// 	type: PageType.EarnThankYou,
+								// 	description: "4,500"
+								// },
+
+								//*** Quiz ***//
 								{
-									type: 0,
-									title: "Who do you primarily chat with on Kik?",
-									description: "Finish the poll to earn <span style='color:#047cfc;'>6,000</span> Kin",
+									type: PageType.TimedFullPageMultiChoice,
+									description: "What was the name of the substance that Star Wars hero Han Solo was encased in?§",
+									amount: 15,
+									rightAnswer: 3,
 									question: {
-										id: "G@#$",
+										id: "erthwt",
 										answers: [
-											"New friends I’ve met on Kik",
-											"Friends I’ve met elsewhere online",
-											"Friends I know from real life",
-											"An equal mix of all three!",
+											"Radonite",
+											"Argonite",
+											"Carbonite",
+											"Kryptonite",
 										],
 									},
 								},
 								{
-									type: 2,
+									type: PageType.TimedFullPageMultiChoice,
+									description: "How much wood could a woodchuck chuck?",
+									amount: 15,
+									rightAnswer: 2,
+									question: {
+										id: "wrtwrthwrhr",
+										answers: [
+											"Not a lot, they are very small",
+											"A woodchuck would chuck as much wood as a woodchuck could chuck",
+											"320 kg",
+											"361.9237001 cm3",
+										],
+									},
+								},
+								{
+									type: PageType.TimedFullPageMultiChoice,
+									description: "Yes?",
+									amount: 20,
+									rightAnswer: 3,
+									question: {
+										id: "eee",
+										answers: [
+											"Of course",
+											"no",
+											"320 kg",
+											"Camel",
+										],
+									},
+								},
+								{
+									type: PageType.TimedFullPageMultiChoice,
+									description: "Color?",
+									amount: 15,
+									rightAnswer: 4,
+									question: {
+										id: "eee",
+										answers: [
+											"Yellow",
+											"Red",
+											"Crimson",
+											"Dorothy",
+										],
+									},
+								},
+								{
+									type: PageType.SuccessBasedThankYou,
 									description: "4,500"
 								},
 

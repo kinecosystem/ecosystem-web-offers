@@ -1,5 +1,7 @@
 @require "../common.styl"
 
+
+
 .page.question.multichoice
 		width: 100%
 
@@ -23,13 +25,19 @@
 			margin: 6% auto 0
 			flex-box(column)
 		.choice
+			position relative
 			btn()
 			margin: 5% 11%
 			background: white
 			font-roboto()
-			color: #7884a5;
+			color: #7884a5
 			outline none
-			&:active
-				background-color: #047cfc
-				border-color: #047cfc
-				color white
+			&.rightAnswer
+				btn-active()
+			&.wrongAnswer
+				border solid 3px $watermelon
+		&:not(.highlightRightWrong)
+			.choices
+				.choice
+					&.selected
+						btn-active()

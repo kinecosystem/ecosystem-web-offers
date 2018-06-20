@@ -1,20 +1,20 @@
 import * as React from "react";
 import BasePage from "./base";
+import { CommonProps } from "../../app";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
-export interface EarnThankYouProps {
+export interface EarnThankYouProps extends CommonProps {
 	amount: number;
-	closeHandler: () => void;
-	hideTopBarHandler: () => void;
+	closeHandler(answerData: any): void;
 	isDisplayed: boolean;  // is this the currently displayed page
+	hideTopBarHandler(): void;
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
-export class EarnThankYou extends React.Component<any, EarnThankYouProps> {
+export class EarnThankYou extends React.Component<EarnThankYouProps> {
 	public componentDidUpdate() {
-		console.log("update");
 		if (this.props.isDisplayed) {
 			this.props.hideTopBarHandler();
 			setTimeout(this.props.closeHandler, 3000);
