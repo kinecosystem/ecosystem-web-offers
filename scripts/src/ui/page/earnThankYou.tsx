@@ -13,7 +13,7 @@ export interface EarnThankYouProps extends CommonProps {
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
-export class EarnThankYou extends React.Component<EarnThankYouProps, any> {
+export class EarnThankYou extends React.Component<EarnThankYouProps> {
 	public componentDidUpdate() {
 		if (this.props.isDisplayed) {
 			this.props.hideTopBarHandler();
