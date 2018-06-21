@@ -21,8 +21,8 @@ export interface FullPageMultiChoiceState {
 }
 
 export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMultiChoiceProps, S extends FullPageMultiChoiceState = FullPageMultiChoiceState> extends React.Component<P, S> {
-	protected additionalClasses: string = "";
-	protected highlightRightWrong: boolean = false;
+	protected additionalClasses = new Set(" ");
+	protected highlightRightWrong = false;
 	private buttons: Array<JSX.Element | null> = [];
 
 	protected constructor(props: P) {
@@ -34,8 +34,8 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 	}
 
 	public render() {
-		this.additionalClasses += this.highlightRightWrong && " highlightRightWrong";
-		return <BasePage className={"question multichoice " + this.additionalClasses}>
+		const additionalClasses = [ ...this.additionalClasses ].join(" ");
+		return <BasePage className={"question multichoice " + additionalClasses}>
 			<div className="header">
 				{this.getHeader()}
 			</div>
@@ -43,6 +43,12 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 				{this.getButtons()}
 			</div>
 		</BasePage>;
+	}
+
+	public componentDidMount() {
+		if (this.highlightRightWrong) {
+			this.additionalClasses.add("highlightRightWrong");
+		}
 	}
 
 	protected getHeader() {

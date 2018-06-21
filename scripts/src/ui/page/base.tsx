@@ -8,6 +8,8 @@ export interface BasePageProps {
 
 export default class Page extends React.Component<any, BasePageProps> {
 	public render() {
-		return <div className={"page " + this.props.className}>{this.props.children}</div>;
+		return (<div className="page-container">
+			<div className={"page " + this.props.className}>{this.props.children}</div>
+		</div>);
 	}
 }

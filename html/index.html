@@ -5,11 +5,16 @@
     <script>
 
 		(function (PageType) {
-			PageType["FullPageMultiChoice"] = "FullPageMultiChoice";
-			PageType["ImageAndText"] = "ImageAndText";
-			PageType["EarnThankYou"] = "EarnThankYou";
-			PageType["TimedFullPageMultiChoice"] = "TimedFullPageMultiChoice";
-			PageType["SuccessBasedThankYou"] = "SuccessBasedThankYou";
+			// PageType["FullPageMultiChoice"] = "FullPageMultiChoice";
+			// PageType["ImageAndText"] = "ImageAndText";
+			// PageType["EarnThankYou"] = "EarnThankYou";
+			// PageType["TimedFullPageMultiChoice"] = "TimedFullPageMultiChoice";
+			// PageType["SuccessBasedThankYou"] = "SuccessBasedThankYou";
+			PageType[PageType["FullPageMultiChoice"] = 0] = "FullPageMultiChoice";
+			PageType[PageType["ImageAndText"] = 1] = "ImageAndText";
+			PageType[PageType["EarnThankYou"] = 2] = "EarnThankYou";
+			PageType[PageType["TimedFullPageMultiChoice"] = 3] = "TimedFullPageMultiChoice";
+			PageType[PageType["SuccessBasedThankYou"] = 4] = "SuccessBasedThankYou";
 		})(PageType = {})
 
 		// If no native Android or iOS bridge interface, install mock native bridge interface
@@ -76,7 +81,7 @@
 								//*** Quiz ***//
 								{
 									type: PageType.TimedFullPageMultiChoice,
-									description: "What was the name of the substance that Star Wars hero Han Solo was encased in?§",
+									description: "What was the name of the substance that Star Wars hero Han Solo was encased in?",
 									amount: 15,
 									rightAnswer: 3,
 									question: {
@@ -136,9 +141,7 @@
 								},
 								{
 									type: PageType.SuccessBasedThankYou,
-									description: "4,500"
 								},
-
 							]
 						}
 					)

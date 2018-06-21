@@ -1,43 +1,39 @@
 @require "../common.styl"
 
-
-
 .page.question.multichoice
-		width: 100%
+	width: 100%
+	font-roboto()
+	.header
+		.title
+			text-align: center
+			width: 72vw
+			font-size: 6.2vw
+			letter-spacing: -0.5px
+			color: #047cfc
+			margin: 10% auto 1%
 
-		.header
-			.title
-				text-align: center
-				width: 72vw
-				font-size: 6.2vw
-				letter-spacing: -0.5px
-				color: #047cfc
-				margin: 10% auto 1%
-				font-roboto()
-
-			.description
-				width: 55vw
-				margin: 3vh auto
-				color: #7884a5
-				font-size: 3.5vw
-
-		.choices
-			margin: 6% auto 0
-			flex-box(column)
-		.choice
-			position relative
-			btn()
-			margin: 5% 11%
-			background: white
-			font-roboto()
+		.description
+			text-align: center
+			margin: 3vh auto
 			color: #7884a5
-			outline none
-			&.rightAnswer
-				btn-active()
-			&.wrongAnswer
-				border solid 3px $watermelon
-		&:not(.highlightRightWrong)
-			.choices
-				.choice
-					&.selected
-						btn-active()
+			font-size: 3.5vw
+
+	.choices
+		margin: 6% auto 0
+		flex-box(column)
+	.choice
+		position relative
+		btn()
+		margin: 5% 11%
+		background: white
+		color: #7884a5
+		outline none
+		&.rightAnswer
+			btn-active()
+		&.wrongAnswer
+			border solid 3px $watermelon
+	&:not(.highlightRightWrong)
+		.choices
+			.choice
+				&.selected
+					btn-active()

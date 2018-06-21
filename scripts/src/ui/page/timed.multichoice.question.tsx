@@ -22,7 +22,6 @@ interface TimerState {
 class Timer extends React.Component<TimerProps, TimerState> {
 	constructor(props: TimerProps) {
 		super(props);
-		console.log("timer constructor, props:", props);
 		this.updateTime = this.updateTime.bind(this);
 		this.state = {
 			started: false,
@@ -41,7 +40,6 @@ class Timer extends React.Component<TimerProps, TimerState> {
 	}
 
 	public componentDidUpdate() {
-		console.log("Timer componentDidUpdate, state.started %s, parent %s", this.state.started, this.props.parent);
 		if (!this.state.started) {
 			setTimeout(this.updateTime, 1000);
 		}
@@ -51,7 +49,6 @@ class Timer extends React.Component<TimerProps, TimerState> {
 		if (this.props.pause) {
 			return;
 		}
-		console.log("timer updateTime", this.state, this.props.parent);
 		const newTime = this.state.time - 1;
 		if (newTime === 0) {
 			this.props.callback();
@@ -65,7 +62,7 @@ class Timer extends React.Component<TimerProps, TimerState> {
 class TimedMultichoiceQuestion extends MultichoiceQuestion {
 	constructor(props: FullPageMultiChoiceProps) {
 		super(props);
-		this.additionalClasses = "timed";
+		this.additionalClasses.add("timed");
 		this.highlightRightWrong = true;
 	}
 

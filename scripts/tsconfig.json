@@ -10,7 +10,9 @@
 		"declaration": true,
 		"skipLibCheck": true,
 		"removeComments": true,
-		"skipDefaultLibCheck": true
+		"skipDefaultLibCheck": true,
+		"importHelpers": true,
+		"downlevelIteration": true,
 	},
 	"exclude": [
 		"bin",

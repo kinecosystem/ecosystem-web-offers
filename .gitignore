@@ -6,5 +6,5 @@ scripts/bin
 styles/bin
 
 index.html
-main.bundle.js
+main.bundle.js*
 *.gz

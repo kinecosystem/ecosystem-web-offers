@@ -17,12 +17,21 @@ export interface AppState {
 }
 
 export enum PageType {
-	FullPageMultiChoice = "FullPageMultiChoice",
-	ImageAndText = "ImageAndText",
-	EarnThankYou = "EarnThankYou",
-	TimedFullPageMultiChoice = "TimedFullPageMultiChoice",
-	SuccessBasedThankYou = "SuccessBasedThankYou",
+	FullPageMultiChoice,
+	ImageAndText,
+	EarnThankYou,
+	TimedFullPageMultiChoice,
+	SuccessBasedThankYou,
 }
+
+// export enum PageType {
+// 	FullPageMultiChoice = "FullPageMultiChoice",
+// 	ImageAndText = "ImageAndText",
+// 	EarnThankYou = "EarnThankYou",
+// 	TimedFullPageMultiChoice = "TimedFullPageMultiChoice",
+// 	SuccessBasedThankYou = "SuccessBasedThankYou",
+// }
+//
 
 export interface SharedData {
 	wrongAnswers?: {};
