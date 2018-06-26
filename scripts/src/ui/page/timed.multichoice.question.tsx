@@ -15,7 +15,7 @@ interface TimerProps {
 }
 
 interface TimerState {
-	started: boolean;
+	started: boolean;  // still needed?
 	time: number;
 }
 
@@ -39,22 +39,18 @@ class Timer extends React.Component<TimerProps, TimerState> {
 		);
 	}
 
-	public componentDidUpdate() {
-		if (!this.state.started) {
-			setTimeout(this.updateTime, 1000);
-		}
+	public componentDidMount() {  // First timer won't get componentDidUpdate
+		console.log("Timer=>componentDidMount(), state:", this.state);
+		setTimeout(this.updateTime, 1000);
 	}
 
 	private updateTime() {
-		if (this.props.pause) {
-			return;
-		}
-		const newTime = this.state.time - 1;
+		console.log("Timer=>updateTime(), state: %o, props: %o", this.state, this.props);
+		const newTime = this.props.pause ? this.state.time : this.state.time - 1;
 		if (newTime === 0) {
 			this.props.callback();
 			return;
 		}
-
 		this.setState({ time: newTime, started: true }, () => setTimeout(this.updateTime, 1000));
 	}
 }
