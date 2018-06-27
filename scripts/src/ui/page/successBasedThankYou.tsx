@@ -53,7 +53,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 			<React.Fragment>
 				<div className="text">
 					<h1 className={""}>Well Done!</h1>
-					<h2>Yay! you've earned</h2>
+					<h2>Yay! You've earned</h2>
 					<div className="amount">{this.props.sharedData.earnedAmount}</div>
 					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>
@@ -73,7 +73,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 			<React.Fragment>
 				<div className="text">
 					<h1 className={""}>Perfect Score!</h1>
-					<h2>Yay! you've earned</h2>
+					<h2>Yay! You've earned</h2>
 					<div className="amount">{this.props.sharedData.earnedAmount}</div>
 					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>

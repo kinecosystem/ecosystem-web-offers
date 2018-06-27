@@ -28,7 +28,7 @@ export class EarnThankYou extends React.Component<EarnThankYouProps> {
 			<BasePage className="earnThankYou">
 
 				<div className="text">
-					<div>Yay! you've earned</div>
+					<div>Yay! You've earned</div>
 					<div className="amount">{this.props.amount}</div>
 					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>
