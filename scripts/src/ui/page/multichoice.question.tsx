@@ -87,13 +87,13 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 		const isRightAnswer = oneBasedIndex === props.rightAnswer;
 		const results = { [ this.props.id ]: value };
 		const newSharedData: SharedData = isRightAnswer ? {} : { wrongAnswers: Object.assign({}, sharedData.wrongAnswers, results) };
-		let delay = 0;
+		let delay = 0;  // Delay between selected answer and transition to next page
 
 		if (this.state.disabled) {
 			return;
 		}
 		if (this.highlightRightWrong) {
-			delay = 1500;
+			delay = 1000;
 			console.log("answer ", isRightAnswer ? null : oneBasedIndex);
 			this.setState({
 				wrongAnswer: isRightAnswer ? null : oneBasedIndex,
