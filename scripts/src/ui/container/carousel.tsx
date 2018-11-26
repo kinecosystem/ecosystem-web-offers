@@ -1,5 +1,5 @@
 import * as React from "react";
-import  SwipeableViews, { SwipeableViewsProps } from 'react-swipeable-views';
+import SwipeableViews, { SwipeableViewsProps } from "react-swipeable-views";
 
 const carouselSettings: any = {
 	disabled: true,

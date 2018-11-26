@@ -19,7 +19,6 @@ declare global {
 	}
 }
 
-
 function callNativeMethod(methodName: string, ...payload: any[]) {
 	console.log("calling method", methodName);
 	if (window.KinNative && methodName in KinNative) {

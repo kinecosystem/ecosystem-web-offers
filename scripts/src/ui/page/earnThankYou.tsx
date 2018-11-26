@@ -6,8 +6,8 @@ import "../../../../styles/src/page/earnThankYou.styl";
 
 export interface EarnThankYouProps extends CommonProps {
 	amount: number;
-	closeHandler(answerData: any): void;
 	isDisplayed: boolean;  // is this the currently displayed page
+	closeHandler(answerData: any): void;
 	hideTopBarHandler(): void;
 }
 

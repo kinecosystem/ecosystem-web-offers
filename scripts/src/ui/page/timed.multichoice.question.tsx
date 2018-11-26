@@ -77,7 +77,7 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 	protected getButtons() {
 		return this.props.choices.map((value: any, index: number) => {
 			const additionalClasses = this.getAdditionalButtonClasses(value, index);
-			const clickCb = this.onSelect.bind(this, value, index);
+			const clickCb = this.onSelect.bind(this, index);
 			return (
 				<button key={index} className={"choice " + additionalClasses} disabled={this.state.disabled} onClick={clickCb}>
 					{value}

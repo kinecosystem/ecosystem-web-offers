@@ -36,7 +36,7 @@ export enum PageType {
 export interface SharedData {
 	wrongAnswers?: {};
 	earnedAmount?: number;
-};
+}
 
 export interface CommonProps {
 	key: number;
