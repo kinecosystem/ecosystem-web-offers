@@ -80,12 +80,12 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 		});
 	}
 
-	protected onSelect(value: string, index: number) {
+	protected onSelect(index: number) {
 		const props = this.props;
 		const sharedData = props.sharedData;
 		const oneBasedIndex = index + 1;
 		const isRightAnswer = oneBasedIndex === props.rightAnswer;
-		const results = { [ this.props.id ]: value };
+		const results = { [ this.props.id ]: oneBasedIndex };
 		const newSharedData: SharedData = isRightAnswer ? {} : { wrongAnswers: Object.assign({}, sharedData.wrongAnswers, results) };
 		let delay = 0;  // Delay between selected answer and transition to next page
 
