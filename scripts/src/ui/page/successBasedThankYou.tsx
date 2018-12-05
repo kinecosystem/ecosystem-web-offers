@@ -13,6 +13,9 @@ export interface EarnThankYouProps extends CommonProps {
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
 export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
+	private static diamondElements = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
+		.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
+	
 	public componentDidUpdate() {
 		if (this.props.isDisplayed) {
 			this.props.hideTopBarHandler();
@@ -40,15 +43,24 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 
 	protected getFailedContent() {
 		return (
-			<div className="text">
-				<div className="standAloneText">Better Luck Next Time!</div>
-			</div>
+			<React.Fragment>
+				<div className="text">
+					<h1 className={""}>Better Luck Next Time!</h1>
+					<h2>Thanks for trying, you've earned</h2>
+					<div className="amount">1</div>
+					<img src={getImageUrl("kin-type")} className="kin-type"/>
+					<h2>for the effort</h2>
+				</div>
+				<div className={"footer"}>
+					<img src={getImageUrl("coins")} className="coins"/>
+					<img src={getImageUrl("sparks")} className="sparks"/>
+					{SuccessBasedThankYou.diamondElements}
+				</div>
+			</React.Fragment>
 		);
 	}
 
 	protected getSuccessContent() {
-		const diamonds = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
-			.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
 		return (
 			<React.Fragment>
 				<div className="text">
@@ -60,15 +72,13 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 				<div className={"footer"}>
 					<img src={getImageUrl("coins")} className="coins"/>
 					<img src={getImageUrl("sparks")} className="sparks"/>
-					{diamonds}
+					{SuccessBasedThankYou.diamondElements}
 				</div>
 			</React.Fragment>
 		);
 	}
 
 	protected getPerfectScoreContent() {
-		const diamonds = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
-			.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
 		return (
 			<React.Fragment>
 				<div className="text">
@@ -80,7 +90,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 				<div className={"footer"}>
 					<img src={getImageUrl("coins")} className="coins"/>
 					<img src={getImageUrl("sparks")} className="sparks"/>
-					{diamonds}
+					{SuccessBasedThankYou.diamondElements}
 				</div>
 			</React.Fragment>
 		);
