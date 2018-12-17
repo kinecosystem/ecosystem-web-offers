@@ -47,8 +47,10 @@
 		"test": "echo \"Error: no tests defined\" && exit 1",
 		"upload": "aws s3 cp main.bundle.js.gz s3://assets.kinecosystem.com/web-offers/cards-based/main.bundle.js --content-encoding gzip --acl public-read && aws s3 cp index.html s3://assets.kinecosystem.com/web-offers/cards-based/index.html --acl public-read",
 		"upload-playground": "aws s3 cp main.bundle.js.gz s3://assets.kinplayground.com/web-offers/cards-based/main.bundle.js --content-encoding gzip --acl public-read && aws s3 cp index.html s3://assets.kinplayground.com/web-offers/cards-based/index.html --acl public-read",
+		"upload-beta": "aws s3 cp main.bundle.js.gz s3://assets.kinecosystembeta.com/web-offers/cards-based/main.bundle.js --content-encoding gzip --acl public-read && aws s3 cp index.html s3://assets.kinecosystembeta.com/web-offers/cards-based/index.html --acl public-read",
 		"publish": "npm run bundle && npm run upload",
 		"publish-playground": "npm run bundle && npm run upload-playground",
+		"publish-beta": "npm run bundle && npm run upload-beta",
 		"analyze": "webpack --profile --json  --config webpack.prod.js > stats.tmp.json; webpack-bundle-analyzer stats.tmp.json && rm stats.tmp.json"
 	}
 }

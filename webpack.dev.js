@@ -10,7 +10,7 @@ module.exports = merge(common, {
 		headers: {'Access-Control-Allow-Origin': '*'},
 		overlay: true,
 	},
-	plugins: [new NgrockWebpackPlugin({
-	   subdomain: "liorama"
-	})]
+	// plugins: [new NgrockWebpackPlugin({
+	//    subdomain: "liorama"
+	// })]
 });
