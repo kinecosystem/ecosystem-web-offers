@@ -76,7 +76,7 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 	protected getButtons() {
 		return this.props.choices.map((value, index) => {
 			const additionalClasses = this.getAdditionalButtonClasses(value, index);
-			return <button key={index} className={"choice " + additionalClasses} disabled={this.state.disabled} onClick={this.onSelect.bind(this, value, index)}>{value}</button>;
+			return <button key={index} className={"choice " + additionalClasses} disabled={this.state.disabled} onClick={this.onSelect.bind(this, index)}>{value}</button>;
 		});
 	}
 
