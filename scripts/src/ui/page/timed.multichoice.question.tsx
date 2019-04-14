@@ -40,7 +40,7 @@ class Timer extends React.Component<TimerProps, TimerState> {
 	}
 
 	public componentDidMount() {  // First timer won't get componentDidUpdate
-		setTimeout(this.updateTime, 1000);
+		// setTimeout(this.updateTime, 1000);
 	}
 
 	private updateTime() {

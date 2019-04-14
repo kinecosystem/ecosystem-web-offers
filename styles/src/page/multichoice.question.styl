@@ -4,19 +4,40 @@
 	width: 100%
 	font-roboto()
 	.header
-		.title
-			text-align: center
-			width: 72vw
+		width: 86%
+		margin: 10% auto 0
+		.header-controls
+			flex-box()
+			justify-content: space-between
+			align-items: flex-start
 			font-size: 6.2vw
-			letter-spacing: -0.5px
-			color: #047cfc
-			margin: 10% auto 1%
+		.title
+			width: 72vw
+			margin: 0 auto 8%
+		button.back-nav
+			-webkit-appearance: none
+			border: none
+			background: none
+			padding: 0
+			img
+				width: 2rem
 
 		.description
-			text-align: center
 			margin: 3vh auto
-			color: #7884a5
-			font-size: 3.5vw
+			font-size: 4.2vw
+			.description-price
+				display: -webkit-inline-flex
+				display: -moz-inline-flex
+				display: -ms-inline-flex
+				display: -o-inline-flex
+				display: inline-flex
+				align-items: center
+				vertical-align: middle
+				color: $kin-purple
+
+				img
+					width: 6px
+					margin: 0 3px
 
 	.choices
 		margin: 6% auto 0
@@ -24,9 +45,9 @@
 	.choice
 		position relative
 		btn()
-		margin: 5% 11%
-		background: white
-		color: #7884a5
+		margin: 5% auto
+		background: inherit
+		color: currentColor
 		outline none
 		&.rightAnswer
 			btn-active()

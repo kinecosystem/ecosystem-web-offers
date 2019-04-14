@@ -52,9 +52,17 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 	}
 
 	protected getHeader() {
+		const currentPage = this.props.pageIndex + 1;
+		/* the list is 0 based */
+		const totalQuestionPages = this.props.totalPagesCount - 1;
+		/* the list contains a Thank you page --- a better solution is better */
 		return (
 			<React.Fragment>
-				<div className="title">{this.props.title}</div>
+				<div className="header-controls">
+					<button className="back-nav"><img src="images/ic-back.svg" /></button>
+					<span className="title">{this.props.title}</span>
+					<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
+				</div>
 				<div className="description" dangerouslySetInnerHTML={{ __html: this.props && this.props.description! }}/>
 			</React.Fragment>
 		);
