@@ -48,6 +48,7 @@ export interface CommonProps {
 	currentPage: number;
 	sharedData: SharedData;
 	updateSharedDate(data: any): void;
+	navigateBack(): void;
 }
 
 const sharedPageData = {};
@@ -99,25 +100,40 @@ class App extends React.Component {
 	}
 
 	private onPageCompleteHandler(answerData: any) {
-		const allData: any = Object.assign({}, this.state.data, answerData);  // todo pollyfill Object.assign
-		const newPageIndex = this.state.currentPage + 1;
-		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
-		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
+		this.setState(Object.assign(this.state, {
+			data: Object.assign(this.state.data, answerData),
+		}));
 
+		this.navigate(+1);
+	}
+
+	private navigateBack () {
+		this.navigate(-1);
+	}
+
+	private navigate (pageStep: number) {
+		const newPageIndex = this.state.currentPage + pageStep;
+		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
+		const isShouldExit = newPageIndex < 0;
+		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
 		if (isComplete) {
-			if (Object.keys(allData)) {
-				console.log("submit " + JSON.stringify(allData));
-				bridge.submitResult(allData);
+			if (Object.keys(this.state.data)) {
+				console.log("submit " + JSON.stringify(this.state.data));
+				bridge.submitResult(this.state.data);
 				bridge.close();
 			}
 			return;
 		}
 
-		this.setState({
+		if (isShouldExit) {
+			console.log("exit " + JSON.stringify(this.state.data));
+			bridge.close();
+			return;
+		}
+
+		this.setState(Object.assign(this.state, {
 			currentPage: newPageIndex,
-			data: allData,
-			isComplete,
-		});
+		}));
 	}
 
 	private updateSharedData(data: any) {
@@ -137,11 +153,17 @@ class App extends React.Component {
 				currentPage: this.state.currentPage,
 				sharedData: sharedPageData,
 				updateSharedDate: this.updateSharedData,
+				navigateBack: this.navigateBack,
 			};
 
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
-					return <MultichoiceQuestion {...commonProps} choices={page.question.choices} description={page.description} onSelected={this.onPageCompleteHandler} rightAnswer={page.rightAnswer}/>;
+					return <MultichoiceQuestion
+						{...commonProps}
+						choices={page.question.choices}
+						description={page.description}
+						onSelected={this.onPageCompleteHandler}
+						rightAnswer={page.rightAnswer}/>;
 				case PageType.ImageAndText:
 					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
