@@ -85,6 +85,7 @@ class App extends React.Component {
 			data: {},
 		};
 		this.onPageCompleteHandler = this.onPageCompleteHandler.bind(this);
+		this.navigateBack = this.navigateBack.bind(this);
 	}
 
 	public render() {

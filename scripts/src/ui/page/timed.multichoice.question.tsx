@@ -67,9 +67,12 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 		/* the list contains a Thank you page --- a better solution is better */
 		return (
 			<React.Fragment>
+				<div className="header-controls">
+					<button className="back-nav" onClick={this.props.navigateBack}><img src="images/ic-back.svg" /></button>
+					<span className="title">{this.props.title}</span>
+					<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
+				</div>
 				<Timer parent={this.props.pageIndex} pause={!this.props.isDisplayed} time={quizTimerTime} callback={this.onSelect.bind(this, null, -1)}/>
-				<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
-				<div className="title">{this.props.title}</div>
 			</React.Fragment>
 		);
 	}
