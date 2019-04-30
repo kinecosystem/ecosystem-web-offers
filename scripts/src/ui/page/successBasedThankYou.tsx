@@ -46,16 +46,12 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>Better Luck Next Time!</h1>
-					<h2>Thanks for trying, you've earned</h2>
-					<div className="amount">1</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>for the effort</h2>
+					<h1 className={ "" }>Better luck next time!</h1>
+					<h2>you've earned:</h2>
+					<span className="amount"><span className="full-width-plus">＋</span><img src='images/kin-coin.svg' /><span>1</span></span>
 				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+				<div className="footer">
+					<img src="images/cheering-hands.svg" className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);
@@ -66,14 +62,11 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 			<React.Fragment>
 				<div className="text">
 					<h1 className={ "" }>Well Done!</h1>
-					<h2>Yay! You've earned</h2>
-					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
+					<h2>Yay! You've earned:</h2>
+					<span className="amount"><span className="full-width-plus">＋</span><img src='images/kin-coin.svg' /><span>{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+				<div className="footer">
+					<img src="images/cheering-hands.svg" className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);
@@ -83,15 +76,12 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>Perfect Score!</h1>
-					<h2>Yay! You've earned</h2>
-					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
+					<h1 className={ "" }>High five!</h1>
+					<h2>Yay! You've earned:</h2>
+					<span className="amount"><span className="full-width-plus">＋</span><img src='images/kin-coin.svg' /><span>{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+				<div className="footer">
+					<img src="images/cheering-hands.svg" className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);

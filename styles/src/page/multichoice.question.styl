@@ -9,11 +9,12 @@
 		.header-controls
 			flex-box()
 			justify-content: space-between
-			align-items: flex-start
+			align-items: center
 			font-size: 6.2vw
 		.title
+			display: inline-block
 			width: 72vw
-			margin: 0 auto 8%
+			margin: 0.1rem auto 8%
 		button.back-nav
 			-webkit-appearance: none
 			border: none
@@ -24,7 +25,7 @@
 
 		.description
 			margin: 3vh auto
-			font-size: 4.2vw
+			font-size: .9rem
 			.description-price
 				display: -webkit-inline-flex
 				display: -moz-inline-flex
@@ -34,21 +35,25 @@
 				align-items: center
 				vertical-align: middle
 				color: $kin-purple
+				line-height: 90%
 
 				img
-					width: 6px
-					margin: 0 3px
-
+					width: 7px
+					margin-right: 3px
+				.full-width-plus
+					font-size: .8rem
+					font-weight bold
 	.choices
 		margin: 6% auto 0
 		flex-box(column)
 	.choice
 		position relative
 		btn()
-		margin: 5% auto
+		margin: 4% auto
 		background: inherit
 		color: currentColor
 		outline none
+		font-size:.9rem
 		&.rightAnswer
 			btn-active()
 		&.wrongAnswer

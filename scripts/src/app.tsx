@@ -47,6 +47,8 @@ export interface CommonProps {
 	totalPagesCount: number;
 	currentPage: number;
 	sharedData: SharedData;
+	rewardText?: string;
+	rewardValue?: number;
 	updateSharedDate(data: any): void;
 	navigateBack(): void;
 }
@@ -149,6 +151,8 @@ class App extends React.Component {
 				pageIndex: index,
 				id: page.question && page.question.id,
 				title: page.title,
+				rewardText: page.rewardText,
+				rewardValue: page.rewardValue,
 				isDisplayed: this.state.currentPage === index,
 				totalPagesCount: this.state.pages.length,
 				currentPage: this.state.currentPage,
@@ -162,7 +166,8 @@ class App extends React.Component {
 					return <MultichoiceQuestion
 						{...commonProps}
 						choices={page.question.choices}
-						description={page.description}
+						rewardText={page.rewardText}
+						rewardValue={page.rewardValue}
 						onSelected={this.onPageCompleteHandler}
 						rightAnswer={page.rightAnswer}/>;
 				case PageType.ImageAndText:
@@ -170,7 +175,15 @@ class App extends React.Component {
 				case PageType.EarnThankYou:
 					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar} amount={page.description}/>;
 				case PageType.TimedFullPageMultiChoice:
-					return <TimedMultichoiceQuestion {...commonProps} choices={page.question.choices} title={page.description} onSelected={this.onPageCompleteHandler} amount={page.amount} rightAnswer={page.rightAnswer}/>;
+					return <TimedMultichoiceQuestion
+						{...commonProps}
+						choices={page.question.choices}
+						title={page.title}
+						rewardText={page.rewardText}
+						rewardValue={page.rewardValue}
+						onSelected={this.onPageCompleteHandler}
+						amount={page.amount}
+						rightAnswer={page.rightAnswer}/>;
 				case PageType.SuccessBasedThankYou:
 					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar}/>;
 			}
