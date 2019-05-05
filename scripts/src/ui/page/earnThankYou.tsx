@@ -26,10 +26,10 @@ export class EarnThankYou extends React.Component<EarnThankYouProps> {
 			<BasePage className="earnThankYou">
 				<div className="text">
 					<div>Yay! You've earned</div>
-					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin.svg') } /><span>{this.props.amount}</span></span>
+					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin') } /><span>{this.props.amount}</span></span>
 				</div>
 				<div className={"footer"}>
-					<img src={ getImageUrl('cheering-hands.svg') } className="cheering-hands"/>
+					<img src={ getImageUrl('cheering-hands') } className="cheering-hands"/>
 				</div>
 			</BasePage>
 		);
