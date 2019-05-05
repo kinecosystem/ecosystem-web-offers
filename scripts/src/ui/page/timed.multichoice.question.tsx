@@ -19,6 +19,8 @@ interface TimerState {
 	time: number;
 }
 
+const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
+
 class Timer extends React.Component<TimerProps, TimerState> {
 	constructor(props: TimerProps) {
 		super(props);
@@ -68,12 +70,12 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 		return (
 			<React.Fragment>
 				<div className="header-controls">
-					<button className="back-nav" onClick={this.props.navigateBack}><img src="images/ic-back.svg" /></button>
+					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl('ic-back.svg') } /></button>
 					<Timer parent={this.props.pageIndex} pause={!this.props.isDisplayed} time={quizTimerTime} callback={this.onSelect.bind(this, null, -1)}/>
 					<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
 				</div>
 				<p className="title">{this.props.title}</p>
-				<div className="description">{ this.props.rewardText } <span className='description-price'><span className="full-width-plus">＋</span><img src='images/kin-coin.svg' />{ Number(this.props.rewardValue) }</span> </div>
+				<div className="description">{ this.props.rewardText } <span className='description-price'><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin.svg') } />{ Number(this.props.rewardValue) }</span> </div>
 			</React.Fragment>
 		);
 	}
