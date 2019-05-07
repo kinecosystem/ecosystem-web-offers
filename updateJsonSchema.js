@@ -13,9 +13,8 @@ async function updatePolls() {
 		const content = JSON.parse(oc.content);
 		content.pages.forEach(page => {
 			if (page.type !== pageTypeNum) { return false; }
-			page.rewardText = page.title.replace(/ \${amount}.*/, '');
+			page.rewardText = 'Complete the poll to earn'
 			page.rewardValue = '${amount}';
-			page.title = '';
 		});
 		oc.content = JSON.stringify(content);
 		await oc.save();
@@ -30,7 +29,8 @@ async function updateQuizzes() {
 		const content = JSON.parse(oc.content);
 		content.pages.forEach(page => {
 			if (page.type !== pageTypeNum) { return false; }
-			page.rewardText = page.description.replace(/ \${amount}.*/, '');
+			page.title = page.description.replace(/ \${amount}.*/, '');
+			page.rewardText = 'Complete the quiz to earn'
 			page.rewardValue = '${amount}';
 			page.description = '';
 		});
