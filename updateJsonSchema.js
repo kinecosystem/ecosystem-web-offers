@@ -1,11 +1,11 @@
-var offer_contents = (await OfferContent.find())
+const offer_contents = (await OfferContent.find())
 
 async function updatePolls () {
-	for (var i = 0; i < offer_contents.length; i++) {
-		var oc = offer_contents[i];
-		var pageTypeNum = 0;
+	for (const i = 0; i < offer_contents.length; i++) {
+		const oc = offer_contents[i];
+		const pageTypeNum = 0;
 		if (oc.contentType !== 'poll') { continue; }; // I divided polls and quizzes to two separate calls
-		var content = JSON.parse(oc.content);
+		const content = JSON.parse(oc.content);
 		content.pages.forEach(page => {
 			if (page.type !== pageTypeNum) { return false; }
 			page.rewardText = page.title.replace(/ \${amount}.*/, '');
@@ -18,11 +18,11 @@ async function updatePolls () {
 }
 
 async function updateQuizzes () {
-	for (var i = 0; i < offer_contents.length; i++) {
-		var oc = offer_contents[i];
-		var pageTypeNum = 3;
+	for (const i = 0; i < offer_contents.length; i++) {
+		const oc = offer_contents[i];
+		const pageTypeNum = 3;
 		if (oc.contentType !== 'quiz') { continue; }; // I divided polls and quizzes to two separate calls
-		var content = JSON.parse(oc.content);
+		const content = JSON.parse(oc.content);
 		content.pages.forEach(page => {
 			if (page.type !== pageTypeNum) { return false; }
 			page.rewardText = page.description.replace(/ \${amount}.*/, '');
