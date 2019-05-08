@@ -12,6 +12,8 @@ export interface ImageAndTextProps extends CommonProps {
 	buttonText: string;
 }
 
+const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
+
 class ImageAndText extends React.Component<ImageAndTextProps> {
 	public render() {
 		const currentPage = this.props.pageIndex + 1;
@@ -19,6 +21,11 @@ class ImageAndText extends React.Component<ImageAndTextProps> {
 		const totalQuestionPages = this.props.totalPagesCount - 1;
 		/* the list contains a Thank you page --- a better solution is better */
 		return (<BasePage className="imageAndText">
+			<div className="header-controls">
+				<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl('ic-back') } /></button>
+				<span></span>
+				<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
+			</div>
 			<div className="header">
 				<img src={this.props.image}/>
 				<div className="title">{this.props.title}</div>
