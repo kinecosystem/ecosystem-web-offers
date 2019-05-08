@@ -1,7 +1,7 @@
 const offer_contents = (await OfferContent.find())
 
 async function updatePolls () {
-	for (const i = 0; i < offer_contents.length; i++) {
+	for (let i = 0; i < offer_contents.length; i++) {
 		const oc = offer_contents[i];
 		const pageTypeNum = 0;
 		if (oc.contentType !== 'poll') { continue; }; // I divided polls and quizzes to two separate calls
@@ -18,7 +18,7 @@ async function updatePolls () {
 }
 
 async function updateQuizzes () {
-	for (const i = 0; i < offer_contents.length; i++) {
+	for (let i = 0; i < offer_contents.length; i++) {
 		const oc = offer_contents[i];
 		const pageTypeNum = 3;
 		if (oc.contentType !== 'quiz') { continue; }; // I divided polls and quizzes to two separate calls
