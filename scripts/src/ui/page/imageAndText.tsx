@@ -31,7 +31,9 @@ class ImageAndText extends React.Component<ImageAndTextProps> {
 				<div className="title">{this.props.title}</div>
 			</div>
 			<div className="body" dangerouslySetInnerHTML={{ __html: this.props.bodyHtml }}></div>
-			<div className="footer" dangerouslySetInnerHTML={{ __html: this.props.footerHtml }}></div>
+			<div className="footer">
+				<div className="description">{ this.props.rewardText } <span className='description-price'><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin') } />{ Number(this.props.rewardValue) }</span> </div>
+			</div>
 			<button className={"btn " + (!this.props.onBtnClick ? "hidden" : "")}
 					onClick={this.props.onBtnClick.bind(this.props, { })}>{this.props.buttonText}</button>
 		</BasePage>);
