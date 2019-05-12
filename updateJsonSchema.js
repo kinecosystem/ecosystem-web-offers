@@ -1,6 +1,11 @@
+/**
+ * make console-docker -> .admin -> const offer_contents = (await OfferContent.find())
+ *
+ * @return     {OfferContent[]}  repl can resolve promises
+ */
 const offer_contents = (await OfferContent.find())
 
-async function updatePolls () {
+async function updatePolls() {
 	for (let i = 0; i < offer_contents.length; i++) {
 		const oc = offer_contents[i];
 		const pageTypeNum = 0;
@@ -17,7 +22,7 @@ async function updatePolls () {
 	}
 }
 
-async function updateQuizzes () {
+async function updateQuizzes() {
 	for (let i = 0; i < offer_contents.length; i++) {
 		const oc = offer_contents[i];
 		const pageTypeNum = 3;

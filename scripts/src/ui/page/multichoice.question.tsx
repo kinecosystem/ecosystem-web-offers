@@ -61,12 +61,12 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 		return (
 			<React.Fragment>
 				<div className="header-controls">
-					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl('ic-back') } /></button>
+					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl("ic-back") } /></button>
 					<span></span>
-					<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
+					<div className="pageProgress">{currentPage}/{totalQuestionPages}</div>
 				</div>
 				<span className="title">{this.props.title}</span>
-				<div className="description">{ this.props.rewardText } <span className='description-price'><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin') } />{ Number(this.props.rewardValue) }</span> </div>
+				<div className="description">{ this.props.rewardText } <span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span> </div>
 			</React.Fragment>
 		);
 	}

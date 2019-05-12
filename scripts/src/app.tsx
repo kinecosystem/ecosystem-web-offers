@@ -103,40 +103,48 @@ class App extends React.Component {
 	}
 
 	private onPageCompleteHandler(answerData: any) {
-		this.setState(Object.assign(this.state, {
-			data: Object.assign(this.state.data, answerData),
-		}));
+		const navigationStep = 1;
+		const newPageIndex = this.navigate(navigationStep);
 
-		this.navigate(+1);
-	}
+		const allData: any = Object.assign({}, this.state.data, answerData);  // todo pollyfill Object.assign
 
-	private navigateBack () {
-		this.navigate(-1);
-	}
-
-	private navigate (pageStep: number) {
-		const newPageIndex = this.state.currentPage + pageStep;
 		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
-		const isShouldExit = newPageIndex < 0;
-		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
 		if (isComplete) {
-			if (Object.keys(this.state.data)) {
+			if (Object.keys(allData)) {
 				console.log("submit " + JSON.stringify(this.state.data));
 				bridge.submitResult(this.state.data);
 				bridge.close();
 			}
 			return;
 		}
+		this.setState({
+			currentPage: newPageIndex,
+			data: allData,
+			isComplete,
+		});
+	}
 
-		if (isShouldExit) {
+	private navigateBack() {
+		const navigationStep = -1;
+		const newPageIndex = this.navigate(navigationStep);
+
+		const shouldExit = newPageIndex < 0;
+		if (shouldExit) {
 			console.log("exit " + JSON.stringify(this.state.data));
 			bridge.close();
 			return;
 		}
 
-		this.setState(Object.assign(this.state, {
+		this.setState(Object.assign({}, this.state, {
 			currentPage: newPageIndex,
 		}));
+	}
+
+	private navigate(pageStep: number): number {
+		const newPageIndex = this.state.currentPage + pageStep;
+		console.log("current: %s, new page: %s", this.state.currentPage, newPageIndex);
+
+		return newPageIndex;
 	}
 
 	private updateSharedData(data: any) {

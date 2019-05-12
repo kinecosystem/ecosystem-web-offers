@@ -41,7 +41,7 @@ class Timer extends React.Component<TimerProps, TimerState> {
 		);
 	}
 
-	public componentDidMount() {  // First timer won't get componentDidUpdate
+	public componentDidMount() {  // First timer won"t get componentDidUpdate
 		setTimeout(this.updateTime, 1000);
 	}
 
@@ -70,12 +70,12 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 		return (
 			<React.Fragment>
 				<div className="header-controls">
-					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl('ic-back') } /></button>
+					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl("ic-back") } /></button>
 					<Timer parent={this.props.pageIndex} pause={!this.props.isDisplayed} time={quizTimerTime} callback={this.onSelect.bind(this, null, -1)}/>
-					<div className={"pageProgress"}>{currentPage}/{totalQuestionPages}</div>
+					<div className="pageProgress">{currentPage}/{totalQuestionPages}</div>
 				</div>
 				<p className="title">{this.props.title}</p>
-				<div className="description">{ this.props.rewardText } <span className='description-price'><span className="full-width-plus">＋</span><img src={ getImageUrl('kin-coin') } />{ Number(this.props.rewardValue) }</span> </div>
+				<div className="description">{ this.props.rewardText } <span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span> </div>
 			</React.Fragment>
 		);
 	}
