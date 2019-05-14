@@ -11,6 +11,7 @@ import { SuccessBasedThankYou } from "./ui/page/successBasedThankYou";
 
 export interface AppState {
 	pages: any;
+	theme: string;
 	currentPage: number;
 	isComplete: boolean;
 	data: {};
@@ -56,6 +57,9 @@ export interface CommonProps {
 const sharedPageData = {};
 let pages: any = [];
 
+const DEFAULT_THEME = "LIGHT"
+let theme: bridge.KinTheme = DEFAULT_THEME;
+
 function setRenderPollHandler(callback: () => void) {
 	window.kin.renderPoll = data => {
 		console.log("In renderPoll:" + JSON.stringify(data));
@@ -69,6 +73,15 @@ function setRenderPollHandler(callback: () => void) {
 		return;
 	};
 }
+function setTheme(callback: () => void) {
+	console.log("setTheme called from ctor");
+	window.kin.setTheme = themeParam => {
+		console.log("setTheme: " + themeParam);
+		theme = themeParam;
+		callback();
+		return;
+	};
+}
 
 class App extends React.Component {
 	public state: AppState;
@@ -77,11 +90,18 @@ class App extends React.Component {
 		super(props);
 		setRenderPollHandler(() => {
 			console.log("renderPoll callback:", pages);
-			this.setState({ pages });
+			this.setState(Object.assign({}, this.state, { pages }));
+		});
+		setTheme(() => {
+			console.log("setTheme callback: ");
+			this.setState( Object.assign({}, this.state, { theme }) );
+			document.body.style.backgroundColor = theme === DEFAULT_THEME ? "#fff" : "#000";
+			document.body.classList.add("kin-theme-" + theme);
 		});
 		bridge.notifyPageLoaded();
 		this.state = {
 			pages,
+			theme: DEFAULT_THEME,
 			currentPage: 0,
 			isComplete: false,
 			data: {},
@@ -91,6 +111,7 @@ class App extends React.Component {
 	}
 
 	public render() {
+		console.log("state:", this.state);
 		console.log("current page:", this.state.currentPage);
 		return (
 			<div

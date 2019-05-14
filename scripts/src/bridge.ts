@@ -11,9 +11,14 @@ export type KinNative = {
 
 declare var KinNative: KinNative;
 
+export type KinTheme = "LIGHT" | "DARK";
+
 declare global {
 	interface Window {
-		kin: { renderPoll: (data: any) => void };
+		kin: {
+			renderPoll: (data: any) => void,
+			setTheme: (theme: KinTheme) => void,
+		};
 		webkit: any;
 		KinNative: KinNative;
 	}
