@@ -171,7 +171,7 @@ class App extends React.Component {
 				case PageType.ImageAndText:
 					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
-					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} amount={page.description}/>;
+					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} amount={page.rewardValue}/>;
 				case PageType.TimedFullPageMultiChoice:
 					return <TimedMultichoiceQuestion
 						{...commonProps}
