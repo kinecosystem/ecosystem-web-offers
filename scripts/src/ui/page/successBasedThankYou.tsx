@@ -8,7 +8,7 @@ export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
 	closeHandler(answerData: any): void;
 
-	hideTopBarHandler(): void;
+	// hideTopBarHandler(): void;
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
@@ -19,7 +19,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 
 	public componentDidUpdate() {
 		if (this.props.isDisplayed) {
-			this.props.hideTopBarHandler();
+			// this.props.hideTopBarHandler();
 			setTimeout(this.props.closeHandler, 3000);
 		}
 	}

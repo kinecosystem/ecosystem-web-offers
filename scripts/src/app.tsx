@@ -50,7 +50,7 @@ export interface CommonProps {
 	rewardText?: string;
 	rewardValue?: number;
 	updateSharedDate(data: any): void;
-	navigateBack(): void;
+	close(): void;
 }
 
 const sharedPageData = {};
@@ -87,7 +87,7 @@ class App extends React.Component {
 			data: {},
 		};
 		this.onPageCompleteHandler = this.onPageCompleteHandler.bind(this);
-		this.navigateBack = this.navigateBack.bind(this);
+		this.close = this.close.bind(this);
 	}
 
 	public render() {
@@ -113,7 +113,7 @@ class App extends React.Component {
 			if (Object.keys(allData)) {
 				console.log("submit " + JSON.stringify(this.state.data));
 				bridge.submitResult(this.state.data);
-				bridge.close();
+				this.close();
 			}
 			return;
 		}
@@ -124,20 +124,10 @@ class App extends React.Component {
 		});
 	}
 
-	private navigateBack() {
-		const navigationStep = -1;
-		const newPageIndex = this.navigate(navigationStep);
-
-		const shouldExit = newPageIndex < 0;
-		if (shouldExit) {
-			console.log("exit " + JSON.stringify(this.state.data));
-			bridge.close();
-			return;
-		}
-
-		this.setState(Object.assign({}, this.state, {
-			currentPage: newPageIndex,
-		}));
+	private close() {
+		console.log("exit " + JSON.stringify(this.state.data));
+		bridge.close();
+		return;
 	}
 
 	private navigate(pageStep: number): number {
@@ -166,7 +156,7 @@ class App extends React.Component {
 				currentPage: this.state.currentPage,
 				sharedData: sharedPageData,
 				updateSharedDate: this.updateSharedData,
-				navigateBack: this.navigateBack,
+				close: this.close,
 			};
 
 			switch (page.type) {
@@ -181,7 +171,7 @@ class App extends React.Component {
 				case PageType.ImageAndText:
 					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
-					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar} amount={page.description}/>;
+					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} amount={page.description}/>;
 				case PageType.TimedFullPageMultiChoice:
 					return <TimedMultichoiceQuestion
 						{...commonProps}
@@ -193,7 +183,7 @@ class App extends React.Component {
 						amount={page.amount}
 						rightAnswer={page.rightAnswer}/>;
 				case PageType.SuccessBasedThankYou:
-					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar}/>;
+					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} />;
 			}
 		});
 	}
