@@ -21,7 +21,7 @@ class ImageAndText extends React.Component<ImageAndTextProps> {
 		const totalQuestionPages = this.props.totalPagesCount - 1;
 		/* the list contains a Thank you page --- a better solution is better */
 
-		let imgSpecialClass = setSpecialClassForHeroImage(currentPage);
+		const imgSpecialClass = setSpecialClassForHeroImage(currentPage);
 		return (<BasePage className="imageAndText">
 			<div className="header-controls">
 				<button className="close-btn" onClick={this.props.close}><img src={ getImageUrl("close-btn") } /></button>
@@ -34,7 +34,11 @@ class ImageAndText extends React.Component<ImageAndTextProps> {
 			</div>
 			<div className="body" dangerouslySetInnerHTML={{ __html: this.props.bodyHtml }}></div>
 			<div className="footer">
-				<div className="description">{ this.props.rewardText } <span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span> </div>
+				<div className="description">{ this.props.rewardText }
+				{ this.props.rewardValue &&
+					<span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span>
+				}
+				</div>
 			</div>
 			<button className={"btn " + (!this.props.onBtnClick ? "hidden" : "")}
 					onClick={this.props.onBtnClick.bind(this.props, { })}>{this.props.buttonText}</button>
