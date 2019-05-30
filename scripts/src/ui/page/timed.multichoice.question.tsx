@@ -77,7 +77,7 @@ class TimedMultichoiceQuestion extends MultichoiceQuestion {
 				<p className="title">{this.props.title}</p>
 				<div className="description">{ this.props.rewardText }
 				{ this.props.rewardValue &&
-				 <span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span>
+				 <span className="description-price"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } />{ this.props.rewardValue }</span>
 				}
 				</div>
 			</React.Fragment>

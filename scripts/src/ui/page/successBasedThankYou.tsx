@@ -48,7 +48,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 				<div className="text">
 					<h1>Better luck next time!</h1>
 					<h2>you've earned:</h2>
-					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } /><span>1</span></span>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span>1</span></span>
 				</div>
 				<div className="footer">
 					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
@@ -63,7 +63,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 				<div className="text">
 					<h1>Well Done!</h1>
 					<h2>Yay! You've earned:</h2>
-					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } /><span>{ this.props.sharedData.earnedAmount }</span></span>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
 				<div className="footer">
 					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
@@ -78,7 +78,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 				<div className="text">
 					<h1>High five!</h1>
 					<h2>Yay! You've earned:</h2>
-					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } /><span>{ this.props.sharedData.earnedAmount }</span></span>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
 				<div className="footer">
 					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
