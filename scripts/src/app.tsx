@@ -8,6 +8,7 @@ import TimedMultichoiceQuestion from "./ui/page/timed.multichoice.question";
 import "../../styles/src/app.styl";
 import { EarnThankYou } from "./ui/page/earnThankYou";
 import { SuccessBasedThankYou } from "./ui/page/successBasedThankYou";
+import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 export interface AppState {
 	pages: any;

@@ -1,6 +1,7 @@
 import * as React from "react";
 import BasePage from "./base";
 import { CommonProps } from "../../app";
+import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
@@ -43,14 +44,16 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getFailedContent() {
+		const { t, i18n, ready } = useTranslation();
+
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>Better Luck Next Time!</h1>
-					<h2>Thanks for trying, you've earned</h2>
+					<h1 className={ "" }>{t("title")}</h1>
+					<h2>{t("thanks_for_trying")}</h2>
 					<div className="amount">1</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>for the effort</h2>
+					<h2>{t("for_the_effort")}</h2>
 				</div>
 				<div className={ "footer" }>
 					<img src={ getImageUrl("coins") } className="coins"/>
@@ -62,11 +65,13 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getSuccessContent() {
+		const { t, i18n, ready } = useTranslation();
+
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>Well Done!</h1>
-					<h2>Yay! You've earned</h2>
+					<h1 className={ "" }>{t("title")}</h1>
+					<h2>{t("yay_youve_earned")}</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
 				</div>
@@ -80,11 +85,13 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getPerfectScoreContent() {
+		const { t, i18n, ready } = useTranslation();
+
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>Perfect Score!</h1>
-					<h2>Yay! You've earned</h2>
+					<h1 className={ "" }>{t("title")}</h1>
+					<h2>{t("yay_youve_earned")}</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
 				</div>
