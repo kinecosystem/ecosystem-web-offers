@@ -9,6 +9,7 @@
 		"@types/react": "^16.0.38",
 		"@types/react-dom": "^16.0.4",
 		"@types/react-swipeable-views": "^0.12.1",
+		"accept-language": "^3.0.18",
 		"babel-polyfill": "^6.26.0",
 		"i18next": "^17.0.6",
 		"i18next-browser-languagedetector": "^3.0.1",
