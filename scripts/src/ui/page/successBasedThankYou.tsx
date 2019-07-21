@@ -1,7 +1,6 @@
 import * as React from "react";
 import BasePage from "./base";
 import { CommonProps } from "../../app";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
@@ -32,7 +31,6 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	public render() {
-
 		const sharedData = this.props.sharedData;
 		const earnedAmount = sharedData.earnedAmount;
 		let content;
@@ -51,8 +49,6 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getFailedContent() {
-		// const { t, i18n, ready } = useTranslation();
-
 		return (
 			<React.Fragment>
 				<div className="text">
@@ -72,8 +68,6 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getSuccessContent() {
-		// const { t, i18n, ready } = useTranslation();
-
 		return (
 			<React.Fragment>
 				<div className="text">
@@ -92,8 +86,6 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getPerfectScoreContent() {
-		// const { t, i18n, ready } = useTranslation();
-
 		return (
 			<React.Fragment>
 				<div className="text">
