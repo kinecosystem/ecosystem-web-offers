@@ -21,12 +21,12 @@ const en: Language = {
 };
 
 const pt: Language = {
-	yay_youve_earned: "gdfgdfgdf",
-	better_luck_next_time: "dfgdfgdf",
-	well_done: "dfgdfgdf",
-	perfect_score: "dfgdfgdfgdf",
-	thanks_for_trying: "dfgdfgdfgdf",
-	for_the_effort: "dfgdfgdfg",
+	yay_youve_earned: "Eba! Você ganhou",
+	better_luck_next_time: "Mais Sorte na Próxima Vez!",
+	well_done: "Muito bem!",
+	perfect_score: "Pontuação Perfeita!",
+	thanks_for_trying: "Obrigado por tentar, você ganhou",
+	for_the_effort: "pelo esforço",
 };
 
 export const dictionary: Dictionary = {
