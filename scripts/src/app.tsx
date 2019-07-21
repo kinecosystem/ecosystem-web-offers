@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Carousel from "./ui/container/carousel";
 import * as  bridge from "./bridge";
 import ImageAndTextPage from "./ui/page/imageAndText";
@@ -8,7 +7,6 @@ import TimedMultichoiceQuestion from "./ui/page/timed.multichoice.question";
 import "../../styles/src/app.styl";
 import { EarnThankYou } from "./ui/page/earnThankYou";
 import { SuccessBasedThankYou } from "./ui/page/successBasedThankYou";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 export interface AppState {
 	pages: any;
