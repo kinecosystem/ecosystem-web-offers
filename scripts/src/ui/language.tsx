@@ -1,5 +1,4 @@
 export interface Language {
-	title: string;
 	yay_youve_earned: string;
 	better_luck_next_time: string;
 	well_done: string;
@@ -13,7 +12,6 @@ export interface Dictionary {
 }
 
 const en: Language = {
-	title: "kusheli rabak",
 	yay_youve_earned: "Yay! You've earned",
 	better_luck_next_time: "Better Luck Next Time!",
 	well_done: "Well Done!",
@@ -23,7 +21,6 @@ const en: Language = {
 };
 
 const pt: Language = {
-	title: "kusheli rabak",
 	yay_youve_earned: "gdfgdfgdf",
 	better_luck_next_time: "dfgdfgdf",
 	well_done: "dfgdfgdf",
