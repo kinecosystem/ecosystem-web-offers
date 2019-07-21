@@ -5,6 +5,12 @@ import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
+import { texts } from "../language";
+import acceptLanguage from "accept-language";
+
+acceptLanguage.languages(["en", "pt"]);
+const language: string = acceptLanguage.get(window.navigator.language) || "en";
+
 export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
 	closeHandler(answerData: any): void;
@@ -26,6 +32,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	public render() {
+
 		const sharedData = this.props.sharedData;
 		const earnedAmount = sharedData.earnedAmount;
 		let content;
@@ -44,16 +51,16 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getFailedContent() {
-		const { t, i18n, ready } = useTranslation();
+		// const { t, i18n, ready } = useTranslation();
 
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{t("title")}</h1>
-					<h2>{t("thanks_for_trying")}</h2>
+					<h1 className={ "" }>{ texts[language].better_luck_next_time }</h1>
+					<h2>{ texts[language].thanks_for_trying }</h2>
 					<div className="amount">1</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>{t("for_the_effort")}</h2>
+					<h2>{ texts[language].for_the_effort }</h2>
 				</div>
 				<div className={ "footer" }>
 					<img src={ getImageUrl("coins") } className="coins"/>
@@ -65,13 +72,13 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getSuccessContent() {
-		const { t, i18n, ready } = useTranslation();
+		// const { t, i18n, ready } = useTranslation();
 
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{t("title")}</h1>
-					<h2>{t("yay_youve_earned")}</h2>
+					<h1 className={ "" }>{ texts[language].well_done }</h1>
+					<h2>{ texts[language].yay_youve_earned }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
 				</div>
@@ -85,16 +92,15 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	protected getPerfectScoreContent() {
-		const { t, i18n, ready } = useTranslation();
+		// const { t, i18n, ready } = useTranslation();
 
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{t("title")}</h1>
-					<h2>{t("yay_youve_earned")}</h2>
+					<h1 className={ "" }>{ texts[language].perfect_score }</h1>
+					<h2>{ texts[language].yay_youve_earned }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-				</div>
+					<img src={ getImageUrl("kin-type") } className="kin-type"/>				</div>
 				<div className={ "footer" }>
 					<img src={ getImageUrl("coins") } className="coins"/>
 					<img src={ getImageUrl("sparks") } className="sparks"/>
