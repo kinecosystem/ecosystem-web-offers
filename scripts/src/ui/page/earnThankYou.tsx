@@ -1,7 +1,6 @@
 import * as React from "react";
 import BasePage from "./base";
 import { CommonProps } from "../../app";
-import { useTranslation, withTranslation, Trans } from "react-i18next";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
@@ -14,7 +13,7 @@ export interface EarnThankYouProps extends CommonProps {
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
-import { texts } from "../language";
+import { dictionary } from "../language";
 import acceptLanguage from "accept-language";
 
 acceptLanguage.languages(["en", "pt"]);
@@ -35,7 +34,7 @@ export class EarnThankYou extends React.Component<EarnThankYouProps> {
 			<BasePage className="earnThankYou">
 
 				<div className="text">
-					<div>{ texts[language].yay_youve_earned }</div>
+					<div>{ dictionary[language].yay_youve_earned }</div>
 					<div className="amount">{this.props.amount}</div>
 					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>

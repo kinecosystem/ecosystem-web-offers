@@ -32,7 +32,7 @@ const pt: Language = {
 	for_the_effort: "dfgdfgdfg",
 };
 
-export const texts: Dictionary = {
+export const dictionary: Dictionary = {
 	en,
 	pt,
 };
