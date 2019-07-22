@@ -1,15 +1,20 @@
-export interface Language {
+import acceptLanguage from "accept-language";
+
+acceptLanguage.languages(["en", "pt"]);
+const language: string = acceptLanguage.get(window.navigator.language) || "en";
+
+export type Language = {
 	yay_youve_earned: string;
 	better_luck_next_time: string;
 	well_done: string;
 	perfect_score: string;
 	thanks_for_trying: string;
 	for_the_effort: string;
-}
+};
 
-export interface Dictionary {
+export type Languages = {
 	[key: string]: Language;
-}
+};
 
 const en: Language = {
 	yay_youve_earned: "Yay! You've earned",
@@ -29,7 +34,11 @@ const pt: Language = {
 	for_the_effort: "pelo esforço",
 };
 
-export const dictionary: Dictionary = {
+export const languages: Languages = {
 	en,
 	pt,
 };
+
+export function t(): Language {
+	return languages[language];
+}

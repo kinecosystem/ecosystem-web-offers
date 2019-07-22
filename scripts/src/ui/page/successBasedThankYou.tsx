@@ -4,11 +4,7 @@ import { CommonProps } from "../../app";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
-import { dictionary } from "../language";
-import acceptLanguage from "accept-language";
-
-acceptLanguage.languages(["en", "pt"]);
-const language: string = acceptLanguage.get(window.navigator.language) || "en";
+import { t } from "../language";
 
 export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
@@ -52,11 +48,11 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ dictionary[language].better_luck_next_time }</h1>
-					<h2>{ dictionary[language].thanks_for_trying }</h2>
+					<h1 className={ "" }>{ t().better_luck_next_time }</h1>
+					<h2>{ t().thanks_for_trying }</h2>
 					<div className="amount">1</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>{ dictionary[language].for_the_effort }</h2>
+					<h2>{ t().for_the_effort }</h2>
 				</div>
 				<div className={ "footer" }>
 					<img src={ getImageUrl("coins") } className="coins"/>
@@ -71,8 +67,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ dictionary[language].well_done }</h1>
-					<h2>{ dictionary[language].yay_youve_earned }</h2>
+					<h1 className={ "" }>{ t().well_done }</h1>
+					<h2>{ t().yay_youve_earned }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
 				</div>
@@ -89,8 +85,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ dictionary[language].perfect_score }</h1>
-					<h2>{ dictionary[language].yay_youve_earned }</h2>
+					<h1 className={ "" }>{ t().perfect_score }</h1>
+					<h2>{ t().yay_youve_earned }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>				</div>
 				<div className={ "footer" }>
