@@ -4,7 +4,7 @@ import { CommonProps } from "../../app";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
-import { translate } from "../language";
+import { translate } from "../../language";
 
 export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
