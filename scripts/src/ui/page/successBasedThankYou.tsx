@@ -48,11 +48,11 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate().better_luck_next_time }</h1>
-					<h2>{ translate().thanks_for_trying }</h2>
+					<h1 className={ "" }>{ translate("better_luck_next_time") }</h1>
+					<h2>{ translate("thanks_for_trying") }</h2>
 					<div className="amount">1</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>{ translate().for_the_effort }</h2>
+					<h2>{ translate("for_the_effort") }</h2>
 				</div>
 				<div className={ "footer" }>
 					<img src={ getImageUrl("coins") } className="coins"/>
@@ -67,8 +67,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate().well_done }</h1>
-					<h2>{ translate().yay_youve_earned }</h2>
+					<h1 className={ "" }>{ translate("well_done") }</h1>
+					<h2>{ translate("yay_youve_earned") }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>
 				</div>
@@ -85,8 +85,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate().perfect_score }</h1>
-					<h2>{ translate().yay_youve_earned }</h2>
+					<h1 className={ "" }>{ translate("perfect_score") }</h1>
+					<h2>{ translate("yay_youve_earned") }</h2>
 					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
 					<img src={ getImageUrl("kin-type") } className="kin-type"/>				</div>
 				<div className={ "footer" }>

@@ -39,6 +39,6 @@ export const languages: Languages = {
 	pt,
 };
 
-export function translate(): Language {
-	return languages[language];
+export function translate(key: keyof Language): string {
+	return languages[language][key];
 }
