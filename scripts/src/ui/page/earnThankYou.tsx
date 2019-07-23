@@ -13,7 +13,7 @@ export interface EarnThankYouProps extends CommonProps {
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
 
-import { t } from "../language";
+import { translate } from "../language";
 
 export class EarnThankYou extends React.Component<EarnThankYouProps> {
 	public componentDidUpdate() {
@@ -30,7 +30,7 @@ export class EarnThankYou extends React.Component<EarnThankYouProps> {
 			<BasePage className="earnThankYou">
 
 				<div className="text">
-					<div>{ t().yay_youve_earned }</div>
+					<div>{ translate().yay_youve_earned }</div>
 					<div className="amount">{this.props.amount}</div>
 					<img src={getImageUrl("kin-type")} className="kin-type"/>
 				</div>
