@@ -3,7 +3,7 @@ import acceptLanguage from "accept-language";
 acceptLanguage.languages(["en", "pt"]);
 const language: string = acceptLanguage.get(window.navigator.language) || "en";
 
-export type Language = {
+export type LocalizedStrings = {
 	yay_youve_earned: string;
 	better_luck_next_time: string;
 	well_done: string;
@@ -13,10 +13,10 @@ export type Language = {
 };
 
 export type Languages = {
-	[key: string]: Language;
+	[key: string]: LocalizedStrings;
 };
 
-const en: Language = {
+const en: LocalizedStrings = {
 	yay_youve_earned: "Yay! You've earned",
 	better_luck_next_time: "Better Luck Next Time!",
 	well_done: "Well Done!",
@@ -25,7 +25,7 @@ const en: Language = {
 	for_the_effort: "for the effort",
 };
 
-const pt: Language = {
+const pt: LocalizedStrings = {
 	yay_youve_earned: "Eba! Você ganhou",
 	better_luck_next_time: "Mais Sorte na Próxima Vez!",
 	well_done: "Muito bem!",
@@ -39,6 +39,6 @@ export const languages: Languages = {
 	pt,
 };
 
-export function translate(key: keyof Language): string {
+export function translate(key: keyof LocalizedStrings): string {
 	return languages[language][key];
 }
