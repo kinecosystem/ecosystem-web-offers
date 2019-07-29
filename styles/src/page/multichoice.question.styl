@@ -4,19 +4,41 @@
 	width: 100%
 	font-roboto()
 	.header
-		.title
-			text-align: center
-			width: 72vw
+		width: 86%
+		margin: 7% auto 0
+		.header-controls
+			flex-box()
+			justify-content: space-between
+			align-items: center
 			font-size: 6.2vw
-			letter-spacing: -0.5px
-			color: #047cfc
-			margin: 10% auto 1%
+		.title
+			display: inline-block
+			width: 72vw
+			margin: 0.1rem auto 8%
+			font-weight: 500
+		button.close-btn
+			-webkit-appearance: none
+			border: none
+			background: none
+			padding: 0
 
 		.description
-			text-align: center
 			margin: 3vh auto
-			color: #7884a5
-			font-size: 3.5vw
+			font-size: .9rem
+			.description-price
+				display: -webkit-inline-flex
+				display: -moz-inline-flex
+				display: -ms-inline-flex
+				display: -o-inline-flex
+				display: inline-flex
+				align-items: center
+				margin-left .3rem
+				vertical-align: middle
+				color: $kin-purple
+				line-height: 90%
+				img
+					width: 7px
+					margin-right: 1px
 
 	.choices
 		margin: 6% auto 0
@@ -24,14 +46,15 @@
 	.choice
 		position relative
 		btn()
-		margin: 5% 11%
-		background: white
-		color: #7884a5
+		margin: 4% auto
+		background: inherit
+		color: currentColor
 		outline none
+		font-size:.9rem
 		&.rightAnswer
 			btn-active()
 		&.wrongAnswer
-			border solid 3px $watermelon
+			border solid 1px $watermelon
 	&:not(.highlightRightWrong)
 		.choices
 			.choice

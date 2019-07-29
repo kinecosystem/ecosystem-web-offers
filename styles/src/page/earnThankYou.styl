@@ -7,20 +7,20 @@
 	width: 100%
 	height: 100%
 	flex-box(column)  // This is kind of a hack to make it full screen
-	background-image: linear-gradient(7deg, $bright-sky-blue, $bright-blue)
+	background-image: #1f1f1f
 	.text
 		font-roboto()
-		color: white
+		// color: white
 		width: 100%
 		text-align: center
 		font-size: 8vw
 		margin: 30vh 0 0
 		h1
-			font-size: 10vw
-			margin: 6vh 0 0;
+			font-size: 1.2rem
+			margin: 6vh 0 .5rem;
 			font-roboto()
 		h2
-			font-size: 6vw
+			font-size: 1.2rem
 			margin: 0;
 			font-roboto()
 		.standAloneText
@@ -28,55 +28,22 @@
 			font-size: 8vw
 			font-roboto()
 		.amount
-			font-weight: bold
-			font-size: 16vw
-		.kin-type
-			width: 16vw
+			font-weight: 500
+			font-size: 12vw
+			color: $kin-purple
+			& > *
+				vertical-align: middle
+			img
+				width 1.3rem
+				margin-right .2rem
+				&.plus-sign
+					margin-right .3rem
+			.amount-value
+				line-height 1
 	.footer
 		img
 			position: absolute
-		.diamonds
-			width: 7vw;
-		.coins
-			bottom: 0
-			left: 0
-			width: 100%
-		.sparks
-			bottom: 0
-			left: 0
-			width: 100%
-			object-fit: contain
-		.diamond-l-1
-			left: 1vw;
-			bottom: 9.4vw;
-		.diamond-l-2
-			left: 11vw;
-			bottom: 19vw;
-		.diamond-l-3
-			left: 18vw;
-			bottom: 30vw;
-			width: 10vw
-		.diamond-l-4
-			left: 39vw;
-			bottom: 28vw;
-		.diamond-c-1
-			left: 37.5vw;
-			bottom: 6vw;
-		.diamond-c-2
-			left: 53vw;
-			bottom: 17vw;
-			width: 8vw
-		.diamond-r-3
-			left: 68.3vw;
-			bottom: 22.3vw;
-			width: 8.3vw
-		.diamond-r-2
-			left: 83vw;
-			bottom: 25vw;
-			width: 9.1vw
-		.diamond-r-1
-			left: 84vw;
-			bottom: 13.3vw;
-			width: 8.2vw
-
-
+			&.cheering-hands
+				width: 100%
+				left: 0
+				bottom: 0

@@ -5,6 +5,7 @@ $bright-sky-blue = #08c6f1
 $bright-blue = #0262ff
 $green-blue = #00d093
 $watermelon = #ff4b67
+$kin-purple = #6F41E8;
 
 /*** Mixins ***/
 flex-box($direction = row, $justify = flex-start, $align = stretch)
@@ -28,18 +29,21 @@ font-roboto()
 	line-height: normal
 
 btn()
-	border-radius: 60px
-	width: 80vw
-	height: 11.7vw
-	padding: 2vw
+	border-radius: 5px
+	width: 86vw
+	height: 50px
+	padding 0
 	font-size: 4.2vw
-	border: solid 1px #7884a5
+	border: solid 1px #3d3d3d
 	outline none
 
 btn-active()
-	background-color: #047cfc
-	border-color: #047cfc
+	background-color: $kin-purple
 	color white
 
 .hidden
 	display: none
+
+.kin-purple
+	color: $kin-purple;
+
