@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Carousel from "./ui/container/carousel";
 import * as  bridge from "./bridge";
 import ImageAndTextPage from "./ui/page/imageAndText";

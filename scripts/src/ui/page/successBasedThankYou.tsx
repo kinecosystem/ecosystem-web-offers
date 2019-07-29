@@ -4,6 +4,8 @@ import { CommonProps } from "../../app";
 
 import "../../../../styles/src/page/earnThankYou.styl";
 
+import { translate } from "../../language";
+
 export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
 	closeHandler(answerData: any): void;
@@ -46,8 +48,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1>Better luck next time!</h1>
-					<h2>you've earned:</h2>
+					<h1>{ translate("better_luck_next_time") }</h1>
+					<h2>{ translate("youve_earned") }:</h2>
 					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span>1</span></span>
 				</div>
 				<div className="footer">
@@ -61,8 +63,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1>Well Done!</h1>
-					<h2>Yay! You've earned:</h2>
+					<h1>{ translate("well_done") }</h1>
+					<h2>{ translate("yay_youve_earned") }:</h2>
 					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
 				<div className="footer">
@@ -76,8 +78,8 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1>High five!</h1>
-					<h2>Yay! You've earned:</h2>
+					<h1>{ translate("perfect_score") }</h1>
+					<h2>{ translate("yay_youve_earned") }:</h2>
 					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
 				<div className="footer">
