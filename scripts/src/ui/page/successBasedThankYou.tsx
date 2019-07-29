@@ -10,7 +10,7 @@ export interface EarnThankYouProps extends CommonProps {
 	isDisplayed: boolean;  // is this the currently displayed page
 	closeHandler(answerData: any): void;
 
-	hideTopBarHandler(): void;
+	// hideTopBarHandler(): void;
 }
 
 const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
@@ -21,7 +21,7 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 
 	public componentDidUpdate() {
 		if (this.props.isDisplayed) {
-			this.props.hideTopBarHandler();
+			// this.props.hideTopBarHandler();
 			setTimeout(this.props.closeHandler, 3000);
 		}
 	}
@@ -48,16 +48,12 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate("better_luck_next_time") }</h1>
-					<h2>{ translate("thanks_for_trying") }</h2>
-					<div className="amount">1</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
-					<h2>{ translate("for_the_effort") }</h2>
+					<h1>{ translate("better_luck_next_time") }</h1>
+					<h2>{ translate("youve_earned") }:</h2>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span>1</span></span>
 				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+				<div className="footer">
+					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);
@@ -67,15 +63,12 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate("well_done") }</h1>
-					<h2>{ translate("yay_youve_earned") }</h2>
-					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>
+					<h1>{ translate("well_done") }</h1>
+					<h2>{ translate("yay_youve_earned") }:</h2>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
 				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+				<div className="footer">
+					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);
@@ -85,14 +78,12 @@ export class SuccessBasedThankYou extends React.Component<EarnThankYouProps> {
 		return (
 			<React.Fragment>
 				<div className="text">
-					<h1 className={ "" }>{ translate("perfect_score") }</h1>
-					<h2>{ translate("yay_youve_earned") }</h2>
-					<div className="amount">{ this.props.sharedData.earnedAmount }</div>
-					<img src={ getImageUrl("kin-type") } className="kin-type"/>				</div>
-				<div className={ "footer" }>
-					<img src={ getImageUrl("coins") } className="coins"/>
-					<img src={ getImageUrl("sparks") } className="sparks"/>
-					{ SuccessBasedThankYou.diamondElements }
+					<h1>{ translate("perfect_score") }</h1>
+					<h2>{ translate("yay_youve_earned") }:</h2>
+					<span className="amount"><img src={ getImageUrl("plus-small") } className="plus-sign" /><img src={ getImageUrl("kin-coin") } /><span className="amount">{ this.props.sharedData.earnedAmount }</span></span>
+				</div>
+				<div className="footer">
+					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
 				</div>
 			</React.Fragment>
 		);

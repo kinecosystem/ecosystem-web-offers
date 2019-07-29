@@ -9,7 +9,7 @@ const carouselSettings: any = {
 class Carousel extends React.Component<any, {}> {
 	public render(): any {
 		return (
-			<SwipeableViews className={"carouselWrapper"} index={this.props.selectedItem} {...carouselSettings} >
+			<SwipeableViews className={"carouselWrapper"} slideStyle={{ height: "100%" }} index={this.props.selectedItem} {...carouselSettings} >
 				{this.props.children}
 			</SwipeableViews>
 		);
