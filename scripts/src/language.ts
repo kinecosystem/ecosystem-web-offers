@@ -10,6 +10,7 @@ export type LocalizedStrings = {
 	perfect_score: string;
 	thanks_for_trying: string;
 	for_the_effort: string;
+	youve_earned: string;
 };
 
 export type Languages = {
@@ -20,9 +21,10 @@ const en: LocalizedStrings = {
 	yay_youve_earned: "Yay! You've earned",
 	better_luck_next_time: "Better Luck Next Time!",
 	well_done: "Well Done!",
-	perfect_score: "Perfect Score!",
+	perfect_score: "High Five!",
 	thanks_for_trying: "Thanks for trying, you've earned",
 	for_the_effort: "for the effort",
+	youve_earned: "You've earned",
 };
 
 const pt: LocalizedStrings = {
@@ -32,6 +34,7 @@ const pt: LocalizedStrings = {
 	perfect_score: "Pontuação Perfeita!",
 	thanks_for_trying: "Obrigado por tentar, você ganhou",
 	for_the_effort: "pelo esforço",
+	youve_earned: "Você ganhou",
 };
 
 export const languages: Languages = {
