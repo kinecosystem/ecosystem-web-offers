@@ -2,6 +2,7 @@ import * as React from "react";
 import Carousel from "./ui/container/carousel";
 import * as  bridge from "./bridge";
 import ImageAndTextPage from "./ui/page/imageAndText";
+import IframePage from "./ui/page/iframe";
 import { MultichoiceQuestion } from "./ui/page/multichoice.question";
 import TimedMultichoiceQuestion from "./ui/page/timed.multichoice.question";
 import "../../styles/src/app.styl";
@@ -21,6 +22,7 @@ export enum PageType {
 	EarnThankYou,
 	TimedFullPageMultiChoice,
 	SuccessBasedThankYou,
+	Iframe,
 }
 
 // export enum PageType {
@@ -183,6 +185,8 @@ class App extends React.Component {
 						rightAnswer={page.rightAnswer}/>;
 				case PageType.SuccessBasedThankYou:
 					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} />;
+				case PageType.Iframe:
+					return <IframePage {...commonProps} iframeSrc={page.iframeSrc}/>;
 			}
 		});
 	}

@@ -1,0 +1,95 @@
+@require "../common.styl"
+
+$text-font-size()
+	font-size 3.4vw
+
+.page.iframe
+	flex-box(column)
+	width: 100%
+	height: 100%
+	font-roboto()
+
+	.header-controls
+		width: 86%
+		margin: 7% auto 0
+		flex-box()
+		justify-content: space-between
+		align-items: center
+		font-size: 6.2vw
+	.title
+		display: inline-block
+		width: 72vw
+		margin: 0.1rem auto 8%
+		font-weight: 500
+		padding-top: 2.4vh
+	button.close-btn
+		-webkit-appearance: none
+		border: none
+		background: none
+		padding: 0
+
+	.header
+		padding 5vh 0 3vh
+		flex-box(column)
+		border none
+		img
+			margin: 0 auto 0
+			&.full-width
+				width 100%
+			&.right-aligned
+				margin-right 0
+		.title
+			font-roboto()
+			// color: #f9f9f9
+			margin: 8vh auto 0
+			letter-spacing: -0.5px
+			font-size 1.25rem
+			text-align center
+	.body
+		flex-box(column)
+		margin 0 auto 0
+		font-roboto()
+		font-weight 300
+		line-height: 1.7
+		$text-font-size()
+		// color #f9f9f9
+		width 70vw
+		text-align center
+	.footer
+		margin: auto auto 3vh
+		text-align: center
+		$text-font-size()
+		// color #f9f9f9
+
+		.description
+			margin: 0 auto
+			font-size: .8rem
+			.description-price
+				display: -webkit-inline-flex
+				display: -moz-inline-flex
+				display: -ms-inline-flex
+				display: -o-inline-flex
+				display: inline-flex
+				align-items: center
+				margin-left .3rem
+				vertical-align: middle
+				color: $kin-purple
+				line-height: 90%
+				img
+					width: 7px
+					margin-right: 1px
+
+	.btn
+		btn()
+		border-width 0
+		font-roboto()
+		color white
+		background-color $kin-purple
+		margin: 0 auto 5vw
+	.mainframe
+		border: 0
+		position: absolute
+		top: 16vh
+		left: 0
+		width: 100%
+		height: 100%
