@@ -88,6 +88,7 @@ class App extends React.Component {
 			data: {},
 		};
 		this.onPageCompleteHandler = this.onPageCompleteHandler.bind(this);
+		this.onIframeViewedHandler = this.onIframeViewedHandler.bind(this);
 		this.close = this.close.bind(this);
 	}
 
@@ -123,6 +124,11 @@ class App extends React.Component {
 			data: allData,
 			isComplete,
 		});
+	}
+
+	private onIframeViewedHandler(answerData: any) {
+		bridge.submitResult({});
+		return;
 	}
 
 	private close() {
@@ -186,7 +192,7 @@ class App extends React.Component {
 				case PageType.SuccessBasedThankYou:
 					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} />;
 				case PageType.Iframe:
-					return <IframePage {...commonProps} iframeSrc={page.iframeSrc}/>;
+					return <IframePage {...commonProps} iframeSrc={page.iframeSrc} isDisplayed={this.state.currentPage === index} closeHandler={this.onIframeViewedHandler}/>;
 			}
 		});
 	}
