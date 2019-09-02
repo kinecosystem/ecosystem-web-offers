@@ -14,7 +14,7 @@ const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.ki
 
 class Iframe extends React.Component<IframeProps> {
 	public render() {
-		setTimeout(this.props.closeHandler, 3000);
+		setTimeout(this.props.closeHandler, 1000);
 		return (<BasePage className="iframe">
 			<div className="header-controls">
 				<button className="close-btn" onClick={this.props.close}><img src={ getImageUrl("close-btn") } /></button>
