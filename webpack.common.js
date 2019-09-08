@@ -13,7 +13,7 @@ module.exports = {
 		target: "web",
 		output: {
 			path: outPath,
-			filename: "[name].bundle.js",
+			filename: "[name]-[hash:6].bundle.js",
 			publicPath: ""
 		},
 		module: {
