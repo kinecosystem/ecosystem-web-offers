@@ -20,6 +20,8 @@ export interface FullPageMultiChoiceState {
 	wrongAnswer: number | null;
 }
 
+const getImageUrl = (imageName: string) => `https://s3.amazonaws.com/htmlpoll.kinecosystem.com/images/${imageName}.svg`;
+
 export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMultiChoiceProps, S extends FullPageMultiChoiceState = FullPageMultiChoiceState> extends React.Component<P, S> {
 	protected additionalClasses = new Set(" ");
 	protected highlightRightWrong = false;
@@ -52,10 +54,19 @@ export class MultichoiceQuestion<P extends FullPageMultiChoiceProps = FullPageMu
 	}
 
 	protected getHeader() {
+		const currentPage = this.props.pageIndex + 1;
+		/* the list is 0 based */
+		const totalQuestionPages = this.props.totalPagesCount - 1;
+		/* the list contains a Thank you page --- a better solution is better */
 		return (
 			<React.Fragment>
-				<div className="title">{this.props.title}</div>
-				<div className="description" dangerouslySetInnerHTML={{ __html: this.props && this.props.description! }}/>
+				<div className="header-controls">
+					<button className="back-nav" onClick={this.props.navigateBack}><img src={ getImageUrl("ic-back") } /></button>
+					<span></span>
+					<div className="pageProgress">{currentPage}/{totalQuestionPages}</div>
+				</div>
+				<span className="title">{this.props.title}</span>
+				<div className="description">{ this.props.rewardText } <span className="description-price"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } />{ Number(this.props.rewardValue) }</span> </div>
 			</React.Fragment>
 		);
 	}

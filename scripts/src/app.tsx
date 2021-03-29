@@ -47,7 +47,10 @@ export interface CommonProps {
 	totalPagesCount: number;
 	currentPage: number;
 	sharedData: SharedData;
+	rewardText?: string;
+	rewardValue?: number;
 	updateSharedDate(data: any): void;
+	navigateBack(): void;
 }
 
 const sharedPageData = {};
@@ -84,6 +87,7 @@ class App extends React.Component {
 			data: {},
 		};
 		this.onPageCompleteHandler = this.onPageCompleteHandler.bind(this);
+		this.navigateBack = this.navigateBack.bind(this);
 	}
 
 	public render() {
@@ -99,25 +103,48 @@ class App extends React.Component {
 	}
 
 	private onPageCompleteHandler(answerData: any) {
-		const allData: any = Object.assign({}, this.state.data, answerData);  // todo pollyfill Object.assign
-		const newPageIndex = this.state.currentPage + 1;
-		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
-		console.log("current: %s, new page: %s, isComplete: %s", this.state.currentPage, newPageIndex, isComplete);
+		const navigationStep = 1;
+		const newPageIndex = this.navigate(navigationStep);
 
+		const allData: any = Object.assign({}, this.state.data, answerData);  // todo pollyfill Object.assign
+
+		const isComplete = this.state.currentPage === (this.state.pages.length - 1);
 		if (isComplete) {
 			if (Object.keys(allData)) {
-				console.log("submit " + JSON.stringify(allData));
-				bridge.submitResult(allData);
+				console.log("submit " + JSON.stringify(this.state.data));
+				bridge.submitResult(this.state.data);
 				bridge.close();
 			}
 			return;
 		}
-
 		this.setState({
 			currentPage: newPageIndex,
 			data: allData,
 			isComplete,
 		});
+	}
+
+	private navigateBack() {
+		const navigationStep = -1;
+		const newPageIndex = this.navigate(navigationStep);
+
+		const shouldExit = newPageIndex < 0;
+		if (shouldExit) {
+			console.log("exit " + JSON.stringify(this.state.data));
+			bridge.close();
+			return;
+		}
+
+		this.setState(Object.assign({}, this.state, {
+			currentPage: newPageIndex,
+		}));
+	}
+
+	private navigate(pageStep: number): number {
+		const newPageIndex = this.state.currentPage + pageStep;
+		console.log("current: %s, new page: %s", this.state.currentPage, newPageIndex);
+
+		return newPageIndex;
 	}
 
 	private updateSharedData(data: any) {
@@ -132,22 +159,39 @@ class App extends React.Component {
 				pageIndex: index,
 				id: page.question && page.question.id,
 				title: page.title,
+				rewardText: page.rewardText,
+				rewardValue: page.rewardValue,
 				isDisplayed: this.state.currentPage === index,
 				totalPagesCount: this.state.pages.length,
 				currentPage: this.state.currentPage,
 				sharedData: sharedPageData,
 				updateSharedDate: this.updateSharedData,
+				navigateBack: this.navigateBack,
 			};
 
 			switch (page.type) {
 				case PageType.FullPageMultiChoice:
-					return <MultichoiceQuestion {...commonProps} choices={page.question.choices} description={page.description} onSelected={this.onPageCompleteHandler} rightAnswer={page.rightAnswer}/>;
+					return <MultichoiceQuestion
+						{...commonProps}
+						choices={page.question.choices}
+						rewardText={page.rewardText}
+						rewardValue={page.rewardValue}
+						onSelected={this.onPageCompleteHandler}
+						rightAnswer={page.rightAnswer}/>;
 				case PageType.ImageAndText:
 					return <ImageAndTextPage {...commonProps} image={page.image} footerHtml={page.footerHtml} bodyHtml={page.bodyHtml} buttonText={page.buttonText} onBtnClick={this.onPageCompleteHandler}/>;
 				case PageType.EarnThankYou:
 					return <EarnThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar} amount={page.description}/>;
 				case PageType.TimedFullPageMultiChoice:
-					return <TimedMultichoiceQuestion {...commonProps} choices={page.question.choices} title={page.description} onSelected={this.onPageCompleteHandler} amount={page.amount} rightAnswer={page.rightAnswer}/>;
+					return <TimedMultichoiceQuestion
+						{...commonProps}
+						choices={page.question.choices}
+						title={page.title}
+						rewardText={page.rewardText}
+						rewardValue={page.rewardValue}
+						onSelected={this.onPageCompleteHandler}
+						amount={page.amount}
+						rightAnswer={page.rightAnswer}/>;
 				case PageType.SuccessBasedThankYou:
 					return <SuccessBasedThankYou {...commonProps} isDisplayed={this.state.currentPage === index} closeHandler={this.onPageCompleteHandler} hideTopBarHandler={bridge.hideTopBar}/>;
 			}

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
     <script>
 
 		(function (PageType) {
@@ -66,14 +67,32 @@
 							// {
 							// 	type: PageType.FullPageMultiChoice,
 							// 	title: "Who do you primarily chat with on Kik?",
-							// 	description: "Finish the poll to earn <span style='color:#047cfc;'>6,000</span> Kin",
+							// 	rewardText: "Finish the poll to earn",
+							// 	rewardValue: 6000,
 							// 	question: {
-							// 		id: "G@#$",
+							// 		id: "question_id_1 - G@#$",
 							// 		answers: [
 							// 			"New friends I’ve met on Kik",
 							// 			"Friends I’ve met elsewhere online",
 							// 			"Friends I know from real life",
 							// 			"An equal mix of all three!",
+							// 			"An equal mix of all four!",
+							// 		],
+							// 	},
+							// },
+							// {
+							// 	type: PageType.FullPageMultiChoice,
+							// 	title: "Who do you primarily chat with on Kik?",
+							// 	rewardText: "Finish the poll to earn",
+							// 	rewardValue: 6000,
+							// 	question: {
+							// 		id: "question_id_2 - G@#$",
+							// 		answers: [
+							// 			"New friends I’ve met on Kik",
+							// 			"Friends I’ve met elsewhere online",
+							// 			"Friends I know from real life",
+							// 			"An equal mix of all three!",
+							// 			"An equal mix of all four!",
 							// 		],
 							// 	},
 							// },
@@ -83,26 +102,31 @@
 							// },
 
 							//*** Quiz ***//
-							// {
-							// 	type: PageType.TimedFullPageMultiChoice,
-							// 	description: "What was the name of the substance that Star Wars hero Han Solo was encased in?",
-							// 	amount: 15,
-							// 	rightAnswer: 3,
-							// 	question: {
-							// 		id: "erthwt",
-							// 		answers: [
-							// 			"Radonite",
-							// 			"Argonite",
-							// 			"Carbonite",
-							// 			"Kryptonite",
-							// 		],
-							// 	},
-							// },
 							{
 								type: PageType.TimedFullPageMultiChoice,
-								description: "How much wood could a woodchuck chuck?",
+								title: "What was the name of the substance that Star Wars hero Han Solo was encased in?",
+								amount: 15,
+								rightAnswer: 3,
+								rewardText: "Finish the poll to earn",
+								rewardValue: 6000,
+								question: {
+									id: "erthwt",
+									answers: [
+										"Radonite",
+										"Argonite",
+										"Carbonite",
+										"Kryptonite",
+										"Kryptonite-2",
+									],
+								},
+							},
+							{
+								type: PageType.TimedFullPageMultiChoice,
+								title: "How much wood could a woodchuck chuck?",
 								amount: 15,
 								rightAnswer: 2,
+								rewardText: "Finish the poll to earn",
+								rewardValue: 6000,
 								question: {
 									id: "question-1",
 									answers: [
@@ -110,14 +134,17 @@
 										"A woodchuck would chuck as much wood as a woodchuck could chuck",
 										"320 kg",
 										"361.9237001 cm3",
+										"361.9237001 cm3-2",
 									],
 								},
 							},
 							{
 								type: PageType.TimedFullPageMultiChoice,
-								description: "Yes?",
+								title: "Yes?",
 								amount: 20,
 								rightAnswer: 3,
+								rewardText: "Finish the poll to earn",
+								rewardValue: 6000,
 								question: {
 									id: "question-2",
 									answers: [
@@ -125,14 +152,17 @@
 										"no",
 										"320 kg",
 										"Camel",
+										"Camel-2",
 									],
 								},
 							},
 							{
 								type: PageType.TimedFullPageMultiChoice,
-								description: "Color?",
+								title: "Color?",
 								amount: 15,
 								rightAnswer: 4,
+								rewardText: "Finish the poll to earn",
+								rewardValue: 6000,
 								question: {
 									id: "question-3",
 									answers: [
@@ -140,6 +170,7 @@
 										"Red",
 										"Crimson",
 										"Dorothy",
+										"Dorothy-2",
 									],
 								},
 							},

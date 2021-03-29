@@ -22,20 +22,14 @@ export class EarnThankYou extends React.Component<EarnThankYouProps> {
 	}
 
 	public render() {
-		const diamonds = [ "l-1", "l-2", "l-3", "l-4", "c-1", "c-2", "r-3", "r-2", "r-1" ]
-			.map((name, index) => <img key={index} src={getImageUrl("diamond-" + name)} className={"diamond-" + name + " diamonds"}/>);
 		return (
 			<BasePage className="earnThankYou">
-
 				<div className="text">
 					<div>Yay! You've earned</div>
-					<div className="amount">{this.props.amount}</div>
-					<img src={getImageUrl("kin-type")} className="kin-type"/>
+					<span className="amount"><span className="full-width-plus">＋</span><img src={ getImageUrl("kin-coin") } /><span>{this.props.amount}</span></span>
 				</div>
 				<div className={"footer"}>
-					<img src={getImageUrl("coins")} className="coins"/>
-					<img src={getImageUrl("sparks")} className="sparks"/>
-					{diamonds}
+					<img src={ getImageUrl("cheering-hands") } className="cheering-hands"/>
 				</div>
 			</BasePage>
 		);
